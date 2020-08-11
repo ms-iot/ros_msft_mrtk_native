@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>opencv-c-wrapper</name>
+  <version>0.0.1</version>
+  <description>Opencv4 webcam calibration wrapper</description>
+
+
+  <author email="t-cbaird@microsoft.com">Cameron Baird</author>
+  <author email="lamadio@microsoft.com">Lou Amadio</author>
+
+  <license>MIT</license>
+
+  <buildtool_depend>cmake</buildtool_depend>
+  
+  <depend>opencv</depend>
+
+  <export>
+    <build_type>cmake</build_type>
+  </export>
+</package>
