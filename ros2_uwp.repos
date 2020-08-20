@@ -121,7 +121,7 @@ repositories:
     version: master
   ros2/geometry2:
     type: git
-    url: https://github.com/ms-iot/geometry2.git
+    url: https://github.com/ms-iot/geometry2-1.git
     version: eloquent
   ros2/python_cmake_module:
     type: git
