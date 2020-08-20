@@ -17,6 +17,7 @@
   </metadata>
 
   <files>
+     <file target="build\native\Microsoft.ROS.MRTK.targets" src="Microsoft.ROS.MRTK.targets" />
     <file target="runtimes\win10-x64\native" src="..\target\x64\bin\*.dll" />
     <file target="runtimes\win10-x64\native" src="..\target\x64\bin\*.pdb" />
     <file target="runtimes\win10-x64\native" src="..\target\x64\Lib\builtin_interfaces\dotnet\builtin_interfaces_assemblies.*" />
