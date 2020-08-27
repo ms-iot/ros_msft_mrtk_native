@@ -12,3 +12,8 @@ This C wrapper exposes three functions for the explicit purpose of calibrating a
 3. Supply at least 15 varied images (more is better).
 4. Use `calibrate()` to calculate and output the camera intrinsics using the information supplied by previous calls to `supply_calibration_image(img*)`
 5. Once satisfied with the calibration results, call `clear_calibration_images()` to clear the wrapper of all supplied images. It is now safe for the caller to free supplied images.
+
+
+
+# Todo
+- [] Fix Poco_vendor. Requires patches to util.h & platform.h to add defined(_M_ARM64) for ARM64 support on Hololens 2
