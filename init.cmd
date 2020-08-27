@@ -43,6 +43,9 @@ vcs import src < ..\ros2_uwp.repos
 xcopy /y src\ros2\orocos_kinematics_dynamics\orocos_kdl\config\FindEigen3.cmake src\ros2\eigen3_cmake_module\cmake\Modules
 cd ..
 
+: Build tooling
+vcpkg install protobuf:x86-windows
+vcpkg install foonathan-memory:x86-windows
 
 cd tools
 call colcon build --merge-install --cmake-args -DBUILD_TESTING=OFF
