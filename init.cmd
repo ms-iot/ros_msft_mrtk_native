@@ -40,12 +40,15 @@ vcpkg install opencv4[core]:x64-uwp
 vcpkg install apriltag:x64-uwp
 vcpkg install eigen3:x64-uwp
 vcpkg install foonathan-memory[core]:x64-uwp
+vcpkg install poco:x64-uwp
 
+vcpkg install protobuf:x86-uwp
 vcpkg install asio:x86-uwp
 vcpkg install opencv4[core]:x86-uwp
 vcpkg install apriltag:x86-uwp
 vcpkg install eigen3:x86-uwp
 vcpkg install foonathan-memory:x86-uwp
+vcpkg install poco:x86-uwp
 
 vcpkg install protobuf:arm64-uwp
 vcpkg install asio:arm64-uwp
@@ -54,6 +57,7 @@ vcpkg install opencv4[core]:arm64-uwp
 vcpkg install apriltag:arm64-uwp
 vcpkg install eigen3:arm64-uwp
 vcpkg install foonathan-memory[core]:arm64-uwp
+vcpkg install poco:arm64-uwp
 
 cd tools
 call colcon build --merge-install --cmake-args -DBUILD_TESTING=OFF
