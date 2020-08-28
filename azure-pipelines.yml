@@ -31,7 +31,9 @@ jobs:
       call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       call init.cmd
       call build.cmd
-      cd nuget
+      cd src
+      build.cmd
+      cd ..\nuget
       call build_nuget.cmd
     displayName: Build ROS2 Nuget Package
     workingDirectory: '$(Build.StagingDirectory)\_'
