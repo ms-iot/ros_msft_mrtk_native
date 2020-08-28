@@ -17,8 +17,8 @@ set PATH_ORIG=%PATH%
 set PATH=c:\opt\vcpkg;c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;C:\opt\python37amd64\DLLs;%PATH%
 set VCPKG_ROOT=c:\opt\vcpkg
 
-mkdir c:\opt\vcpkg
-cd c:\opt\vcpkg
+mkdir c:\opt
+cd c:\opt
 git clone https://github.com/ooeygui/vcpkg
 call bootstrap-vcpkg.bat
 
