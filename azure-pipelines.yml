@@ -31,10 +31,9 @@ jobs:
       call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       call init.cmd
       call build.cmd
-      cd src
-      build.cmd
-      cd ..
-    displayName: Build ROS2 Components
+      cd nuget
+      call build_nuget.cmd
+    displayName: Initialize isolated build
     workingDirectory: '$(Build.StagingDirectory)\_'
   - task: PublishBuildArtifacts@1
     inputs:
