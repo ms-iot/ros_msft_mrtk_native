@@ -12,11 +12,15 @@ jobs:
   - task: CopyFiles@2
     inputs:
       targetFolder: '$(Build.StagingDirectory)\_'
+  - task: UseDotNet@2
+    displayName: 'Use dotnet sdk 3.x'
+    inputs:
+      version: 3.x      
   - script: |
       call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       call init.cmd
       call build.cmd
       cd nuget
       call build_nuget.cmd
-    displayName: Initialize isolated build
+    displayName: Build ROS2 Nuget Package
     workingDirectory: '$(Build.StagingDirectory)\_'

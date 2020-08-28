@@ -22,7 +22,7 @@
     <file target="lib\netcore" src="..\target\x86\Lib\rcldotnet\dotnet\System.*" />
     <file target="lib\netcore" src="..\target\x86\Lib\rcldotnet\dotnet\rcldotnet_assemblies.*" />
     <file target="lib\netcore" src="..\target\x86\Lib\rcldotnet_common\dotnet\rcldotnet_common.*" />
-    <file target="lib\netcore" src="..\target\x86\Lib\rclcppdotnet\dotnet\rcldotnet_assemblies.*" />
+    <file target="lib\netcore" src="..\target\x86\Lib\rclcppdotnet\dotnet\rclcppdotnet_assemblies.*" />
     <file target="lib\netcore" src="..\target\x86\Lib\rcl_interfaces\dotnet\rcl_interfaces_assemblies.*" />
 
     <file target="lib\netcore" src="..\target\x86\lib\actionlib_msgs\dotnet\actionlib_msgs_assemblies.dll" />
