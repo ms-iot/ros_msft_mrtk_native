@@ -13,14 +13,14 @@ jobs:
     inputs:
       targetFolder: '$(Build.StagingDirectory)\src\_'
   - script: |
-    call init.cmd
+      call init.cmd
     displayName: Initialize isolated build
     workingDirectory: '$(Build.StagingDirectory)\src\_'
   - script: |
-    build.cmd
+      build.cmd
     displayName: build isolated
     workingDirectory: '$(Build.StagingDirectory)\src\_'
   - script: |
-    build_nuget.cmd
+      build_nuget.cmd
     displayName: build nuget
     workingDirectory: '$(Build.StagingDirectory)\src\_\nuget'
