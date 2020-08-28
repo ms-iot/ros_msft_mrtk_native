@@ -13,6 +13,7 @@ jobs:
     inputs:
       targetFolder: '$(Build.StagingDirectory)\_'
   - script: |
+      dir
       call init.cmd
     displayName: Initialize isolated build
-    workingDirectory: '$(Build.StagingDirectory)\src\_'
+    workingDirectory: '$(Build.StagingDirectory)\_'
