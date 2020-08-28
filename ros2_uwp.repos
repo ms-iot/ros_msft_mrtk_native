@@ -101,7 +101,7 @@ repositories:
     version: eloquent
   ros2/poco_vendor:
     type: git
-    url: https://github.com/ros2/poco_vendor.git
+    url: https://github.com/ms-iot/poco_vendor.git
     version: master
   ros2/spdlog_vendor:
     type: git
