@@ -11,33 +11,16 @@ jobs:
     submodules: recursive
   - task: CopyFiles@2
     inputs:
-      targetFolder: '$(Build.StagingDirectory)\_'
-  - task: UseDotNet@2
-    displayName: 'Use dotnet sdk 3.x'
-    inputs:
-      version: 3.x
-  - task: DownloadBuildArtifacts@0
-    inputs:
-      buildType: 'specific' # Options: current, specific
-      project: 'ros-win' # Required when source == Specific
-      pipeline: 100 # Required when source == Specific
-      buildVersionToDownload: 'latest' # Required when source == Specific# Options: latest, latestFromBranch, specific
-      artifactName: 'ros2vcpkg'
+      targetFolder: '$(Build.StagingDirectory)\src\_'
   - script: |
-      mkdir c:\opt\vcpkg
-      move %System_ArtifactsDirectory%\ros2vcpkg c:\opt\vcpkg
+    call init.cmd
+    displayName: Initialize isolated build
+    workingDirectory: '$(Build.StagingDirectory)\src\_'
   - script: |
-      call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-      call init.cmd
-      call build.cmd
-      cd src
-      build.cmd
-      cd ..\nuget
-      call build_nuget.cmd
-    displayName: Build ROS2 Nuget Package
-    workingDirectory: '$(Build.StagingDirectory)\_'
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: .\target\log
-      artifactName: '$(ROS_DISTRO)-log'
-    condition: always()
+    build.cmd
+    displayName: build isolated
+    workingDirectory: '$(Build.StagingDirectory)\src\_'
+  - script: |
+    build_nuget.cmd
+    displayName: build nuget
+    workingDirectory: '$(Build.StagingDirectory)\src\_\nuget'
