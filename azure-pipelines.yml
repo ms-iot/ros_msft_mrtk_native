@@ -28,6 +28,7 @@ jobs:
       7z x %System_ArtifactsDirectory%\ros2vcpkg\vcpkg.zip.001 -oc:\opt
     displayName: Initialize vcpkg
   - script: |
+      dir
       call init.cmd
       call build.cmd
       cd src
