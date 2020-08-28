@@ -33,7 +33,7 @@ jobs:
       call build.cmd
       cd nuget
       call build_nuget.cmd
-    displayName: Initialize isolated build
+    displayName: Build ROS2 Nuget Package
     workingDirectory: '$(Build.StagingDirectory)\_'
   - task: PublishBuildArtifacts@1
     inputs:
