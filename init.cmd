@@ -5,23 +5,25 @@ setlocal enableextensions disabledelayedexpansion
 
 : Call to initialize the isolated ROS2 build system
 mkdir c:\opt\chocolatey
+set PYTHONHOME=C:\opt\python27amd64\
 set ChocolateyInstall=c:\opt\chocolatey
 choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
-choco upgrade git -y --execution-timeout=0
 choco upgrade ros_colcon_tools -y --execution-timeout=0 --pre
-pip install vcs
 
 : choco upgrade ros_vcpkg -y --execution-timeout=0 --pre
 : include staged vcpkgs
 
+set PATH_ORIG=%PATH%
+set PATH=c:\opt\vcpkg;c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;C:\opt\python37amd64\DLLs;%PATH%
+set VCPKG_ROOT=c:\opt\vcpkg
+
 mkdir c:\opt\vcpkg
 cd c:\opt\vcpkg
 git clone https://github.com/ooeygui/vcpkg
+call bootstrap_vcpkg.bat
 
-set PATH_ORIG=%PATH%
-set PATH=c:\opt\vcpkg;c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;C:\opt\python37amd64\DLLs;%PATH%
+pip install vcs
 
-set VCPKG_ROOT=c:\opt\vcpkg
 
 
 mkdir tools\src
@@ -47,7 +49,6 @@ vcpkg install apriltag:x64-uwp
 vcpkg install eigen3:x64-uwp
 vcpkg install foonathan-memory[core]:x64-uwp
 
-vcpkg install protobuf:x86-uwp
 vcpkg install asio:x86-uwp
 vcpkg install opencv4[core]:x86-uwp
 vcpkg install apriltag:x86-uwp

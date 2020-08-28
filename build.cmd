@@ -5,6 +5,7 @@ setlocal enableextensions
 set ChocolateyInstall=c:\opt\chocolatey
 set PATH=c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;C:\opt\python37amd64\DLLs;%PATH%
 set VCPKG_ROOT=c:\opt\vcpkg
+set PYTHONHOME=C:\opt\python37amd64\
 
 set CMAKE_PREFIX_PATH_ORIG=%CMAKE_PREFIX_PATH%
 set PATH_ORIG=%PATH%
