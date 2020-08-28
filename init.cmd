@@ -5,7 +5,7 @@ setlocal enableextensions disabledelayedexpansion
 
 : Call to initialize the isolated ROS2 build system
 mkdir c:\opt\chocolatey
-set PYTHONHOME=C:\opt\python27amd64\
+set PYTHONHOME=C:\opt\python37amd64\
 set ChocolateyInstall=c:\opt\chocolatey
 choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
 choco upgrade ros-colcon-tools -y --execution-timeout=0 --pre
@@ -22,7 +22,7 @@ cd c:\opt\vcpkg
 git clone https://github.com/ooeygui/vcpkg
 call bootstrap-vcpkg.bat
 
-pip install vcs
+call pip install vcs
 
 
 
