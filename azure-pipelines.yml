@@ -11,16 +11,8 @@ jobs:
     submodules: recursive
   - task: CopyFiles@2
     inputs:
-      targetFolder: '$(Build.StagingDirectory)\src\_'
+      targetFolder: '$(Build.StagingDirectory)\_'
   - script: |
       call init.cmd
     displayName: Initialize isolated build
     workingDirectory: '$(Build.StagingDirectory)\src\_'
-  - script: |
-      build.cmd
-    displayName: build isolated
-    workingDirectory: '$(Build.StagingDirectory)\src\_'
-  - script: |
-      build_nuget.cmd
-    displayName: build nuget
-    workingDirectory: '$(Build.StagingDirectory)\src\_\nuget'
