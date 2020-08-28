@@ -14,10 +14,7 @@ choco upgrade ros-colcon-tools -y --execution-timeout=0 --pre
 : choco upgrade ros_vcpkg -y --execution-timeout=0 --pre
 : include staged vcpkgs
 
-set CMAKE_PREFIX_PATH=%CMAKE_PREFIX_PATH%;C:/opt/vcpkg/installed/x64-uwp
 set VCPKG_ROOT=c:\opt\vcpkg
-set PATH=%PATH:c:\opt\vcpkg;c:\opt\vcpkg\installed\x64-uwp\bin;
-set PATH=%VCPKG_ROOT%;%VCPKG_ROOT%\installed\x64-uwp\bin;%PATH%
 
 call pip install vcs
 
@@ -32,34 +29,35 @@ vcs import src < ..\ros2_uwp.repos
 cd ..
 
 xcopy /y src\ros2\orocos_kinematics_dynamics\orocos_kdl\config\FindEigen3.cmake src\ros2\eigen3_cmake_module\cmake\Modules
-set CMAKE_PREFIX_PATH=C:\opt\rosdeps\x64\include\eigen3;%CMAKE_PREFIX_PATH%
 
 : Build tooling
 vcpkg install protobuf:x86-windows
 vcpkg install foonathan-memory:x86-windows
 
 vcpkg install protobuf:x64-uwp
+vcpkg install asio:x64-uwp
 vcpkg install opencv4[core]:x64-uwp
 vcpkg install apriltag:x64-uwp
 vcpkg install eigen3:x64-uwp
 vcpkg install foonathan-memory[core]:x64-uwp
 
 vcpkg install protobuf:x86-uwp
+vcpkg install asio:x86-uwp
 vcpkg install opencv4[core]:x86-uwp
 vcpkg install apriltag:x86-uwp
 vcpkg install eigen3:x86-uwp
 vcpkg install foonathan-memory:x86-uwp
 
 vcpkg install protobuf:arm64-uwp
+vcpkg install asio:arm64-uwp
+vcpkg install tinyxml2:arm64-uwp
 vcpkg install opencv4[core]:arm64-uwp
 vcpkg install apriltag:arm64-uwp
 vcpkg install eigen3:arm64-uwp
-vcpkg install foonathan-memory:arm86-uwp
 vcpkg install foonathan-memory[core]:arm64-uwp
 
 cd tools
 call colcon build --merge-install --cmake-args -DBUILD_TESTING=OFF
-call install\local_setup.bat
 cd ..
 
 exit /1
