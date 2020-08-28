@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>Microsoft.ROS.MRTK</id>
+    <id>Microsoft.ROS.MRTK.Eloquent</id>
     <version>0.1.0</version>
     <title>Microsoft MRTK Extension for ROS</title>
     <authors>Microsoft</authors>

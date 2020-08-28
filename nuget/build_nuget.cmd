@@ -1,6 +1,6 @@
 @echo off
 setlocal enableextensions disabledelayedexpansion
-set NUSPEC="Microsoft.ROS.MRTK.nuspec"
+set NUSPEC="Microsoft.ROS.MRTK.Eloquent.nuspec"
 
 :: Parse options
 :GETOPTS
@@ -8,7 +8,6 @@ set NUSPEC="Microsoft.ROS.MRTK.nuspec"
  if /I "%~1" == "/Help" goto USAGE
  if /I "%~1" == "/clean" set CLEAN=1
  if /I "%~1" == "/nopack" set NOPACK=1
- if /I "%~1" == "/debug" set NUSPEC="Microsoft.ROS.MRTK.Debug.nuspec"
  shift
 if not (%1)==() goto GETOPTS
 
