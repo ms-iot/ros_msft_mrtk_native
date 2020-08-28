@@ -18,12 +18,12 @@ set PATH=c:\opt\vcpkg;c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python3
 set VCPKG_ROOT=c:\opt\vcpkg
 
 mkdir c:\opt
-cd c:\opt
+pushd c:\opt
 git clone https://github.com/ooeygui/vcpkg
 call bootstrap-vcpkg.bat
 
 call pip install vcs
-
+popd
 
 
 mkdir tools\src
