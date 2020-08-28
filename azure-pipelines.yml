@@ -1,0 +1,26 @@
+trigger:
+- master
+
+jobs:
+- job: Nugetbuild
+  pool:
+    vmImage: 'windows-2019'
+  timeoutInMinutes: 240
+  steps:
+  - checkout: self
+    submodules: recursive
+  - task: CopyFiles@2
+    inputs:
+      targetFolder: '$(Build.StagingDirectory)\src\_'
+  - script: |
+    call init.cmd
+    displayName: Initialize isolated build
+    workingDirectory: '$(Build.StagingDirectory)\src\_'
+  - script: |
+    build.cmd
+    displayName: build isolated
+    workingDirectory: '$(Build.StagingDirectory)\src\_'
+  - script: |
+    build_nuget.cmd
+    displayName: build nuget
+    workingDirectory: '$(Build.StagingDirectory)\src\_\nuget'
