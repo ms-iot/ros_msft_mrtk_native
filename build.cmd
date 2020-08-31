@@ -41,28 +41,6 @@ set PYTHONHOME=C:\opt\python37amd64\
 
 call tools\install\local_setup.bat
 
-if "%BUILD%"=="x86" goto :build_x86
-if "%BUILD%"=="x64" goto :build_x64
-if "%BUILD%"=="unity" goto :build_unity
-if "%BUILD%"=="arm" goto :build_arm
-if "%BUILD%"=="arm64" goto :build_arm64
-
-:build_unity
-set ROS2_ARCH=x64
-
-pushd target
-set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/x64-windows;%CMAKE_PREFIX_PATH_ORIG%
-set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x64-windows\bin;%PATH_ORIG%
-call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
-
-if "%clean%"=="true" rd /s /q build
-call colcon build --event-handlers console_cohesion+ --merge-install --packages-ignore tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog rclcpp_components ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
-if "%ERRORLEVEL%" NEQ "0" goto :eof 
-if exist unity (rd /y /s unity)
-ren install unity
-popd
-if "%BUILD%"=="unity" goto :eof
-
 :build_x64
 set ROS2_ARCH=x64
 
