@@ -16,8 +16,6 @@ set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x64-uwp\bin;%PATH_ORIG%
 
 call tools\install\local_setup.bat
 
-goto :build_x86
-
 :build_x64
 set ROS2_ARCH=x64
 
