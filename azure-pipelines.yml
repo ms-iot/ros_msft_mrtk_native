@@ -15,7 +15,17 @@ jobs:
   - task: UseDotNet@2
     displayName: 'Use dotnet sdk 3.x'
     inputs:
-      version: 3.x      
+      version: 3.x
+  - task: DownloadBuildArtifacts@0
+    inputs:
+      buildType: 'specific' # Options: current, specific
+      project: 'ros-win' # Required when source == Specific
+      pipeline: 100 # Required when source == Specific
+      buildVersionToDownload: 'latest' # Required when source == Specific# Options: latest, latestFromBranch, specific
+      artifactName: 'ros2vcpkg'
+  - script: |
+      mkdir c:\opt\vcpkg
+      move %System_ArtifactsDirectory%\ros2vcpkg c:\opt\vcpkg
   - script: |
       call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       call init.cmd
