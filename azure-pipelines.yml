@@ -19,14 +19,13 @@ jobs:
   - task: DownloadBuildArtifacts@0
     inputs:
       buildType: 'specific' # Options: current, specific
-      project: 'mrtk_ros' # Required when source == Specific
-      pipeline: 110 # Required when source == Specific
+      project: 'ros-win' # Required when source == Specific
+      pipeline: 100 # Required when source == Specific
       buildVersionToDownload: 'latest' # Required when source == Specific# Options: latest, latestFromBranch, specific
       artifactName: 'ros2vcpkg'
   - script: |
       mkdir c:\opt\vcpkg
-      7z x %System_ArtifactsDirectory%\ros2vcpkg\vcpkg.zip.001 -oc:\opt
-    displayName: Initialize vcpkg
+      move %System_ArtifactsDirectory%\ros2vcpkg c:\opt\vcpkg
   - script: |
       call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       call init.cmd

@@ -1,5 +1,5 @@
-trigger: none
-pr: none
+trigger:
+- master
 
 jobs:
 - job: VCPKGbuild

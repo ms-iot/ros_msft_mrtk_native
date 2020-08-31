@@ -1,6 +1,7 @@
 @echo off
 setlocal enableextensions disabledelayedexpansion
 
+<<<<<<< HEAD
 :: Parse options
 :GETOPTS
  if /I "%~1" == "/?" goto USAGE
@@ -13,6 +14,8 @@ setlocal enableextensions disabledelayedexpansion
  shift
 if not (%1)==() goto GETOPTS
 
+=======
+>>>>>>> afd4467... Add separate vcpkg build for speed
 set PATH_ORIG=%PATH%
 set PATH=c:\opt\vcpkg;c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;C:\opt\python37amd64\DLLs;%PATH%
 set VCPKG_ROOT=c:\opt\vcpkg

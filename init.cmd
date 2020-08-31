@@ -1,6 +1,7 @@
 @echo off
 setlocal enableextensions disabledelayedexpansion
 
+if NOT EXIST "c:\opt\vcpkg\vcpkg.exe" goto :novcpkg
 
 if "%VSINSTALLDIR%" == "" (
     if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community" (
@@ -29,8 +30,7 @@ choco upgrade ros-colcon-tools -y --execution-timeout=0 --pre
 
 set VCPKG_ROOT=c:\opt\vcpkg
 
-call pip install vcstool
-call pip install lark-parser
+call pip install vcs
 
 mkdir tools\src
 mkdir target\src
@@ -43,12 +43,14 @@ vcs import src < ..\ros2_uwp.repos
 xcopy /y src\ros2\orocos_kinematics_dynamics\orocos_kdl\config\FindEigen3.cmake src\ros2\eigen3_cmake_module\cmake\Modules
 cd ..
 
-: Build tooling
-vcpkg install protobuf:x86-windows
-vcpkg install foonathan-memory:x86-windows
-
 cd tools
 call colcon build --merge-install --cmake-args -DBUILD_TESTING=OFF
 cd ..
+
+goto :eol
+
+:novcpkg
+echo "VCPkg not found at c:\opt\vcpkg\vcpkg.exe"
+dir c:\opt
 
 exit /1
