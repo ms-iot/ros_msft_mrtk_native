@@ -12,6 +12,7 @@
 
 **/target/
 **/tools/
+**/src/build/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
