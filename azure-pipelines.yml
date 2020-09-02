@@ -26,7 +26,7 @@ jobs:
   - script: |
       dir /s %System_ArtifactsDirectory%
       mkdir c:\opt\vcpkg
-      7z x %System_ArtifactsDirectory%\ros2vcpkg\vcpkg.zip -oc:\opt\vcpkg
+      7z x %System_ArtifactsDirectory%\ros2vcpkg\vcpkg.zip.001 -oc:\opt
   - script: |
       call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       call init.cmd
