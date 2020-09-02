@@ -1,6 +1,3 @@
-trigger:
-- master
-
 jobs:
 - job: VCPKGbuild
   pool:
@@ -18,11 +15,11 @@ jobs:
     displayName: Build ROS2.net dependencies
     workingDirectory: '$(Build.StagingDirectory)\_'
   - script: |
-    mkdir %Build_ArtifactStagingDirectory%\zip
-    7z a -tzip %Build_ArtifactStagingDirectory%\zip\vcpkg.zip c:\opt\vcpkg -v512m
-  displayName: Create SFX installer
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: $(Build.ArtifactStagingDirectory)\zip
-    artifactName: 'ros2vcpkg'
-  displayName: Publish vcpkg
+      mkdir %Build_ArtifactStagingDirectory%\zip
+      7z a -tzip %Build_ArtifactStagingDirectory%\zip\vcpkg.zip c:\opt\vcpkg -v512m
+    displayName: Create VCPKG Archive
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: $(Build.ArtifactStagingDirectory)\zip
+      artifactName: 'ros2vcpkg'
+    displayName: Publish vcpkg
