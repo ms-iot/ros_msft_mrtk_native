@@ -5,7 +5,7 @@ jobs:
 - job: VCPKGbuild
   pool:
     vmImage: 'windows-2019'
-  timeoutInMinutes: 240
+  timeoutInMinutes: 360
   steps:
   - checkout: self
     submodules: recursive
@@ -17,8 +17,12 @@ jobs:
       call initvcpkg.cmd
     displayName: Build ROS2.net dependencies
     workingDirectory: '$(Build.StagingDirectory)\_'
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: c:\opt\vcpkg
-      artifactName: 'ros2vcpkg'
-    condition: always()
+  - script: |
+    mkdir %Build_ArtifactStagingDirectory%\zip
+    7z a -tzip %Build_ArtifactStagingDirectory%\zip\vcpkg.zip c:\opt\vcpkg -v512m
+  displayName: Create SFX installer
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: $(Build.ArtifactStagingDirectory)\zip
+    artifactName: 'ros2vcpkg'
+  displayName: Publish vcpkg
