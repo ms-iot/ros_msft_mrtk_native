@@ -26,9 +26,9 @@ vcs import src < ..\build_tools.repos
 
 cd ..\target
 vcs import src < ..\ros2_uwp.repos
+xcopy /y src\ros2\orocos_kinematics_dynamics\orocos_kdl\config\FindEigen3.cmake src\ros2\eigen3_cmake_module\cmake\Modules
 cd ..
 
-xcopy /y src\ros2\orocos_kinematics_dynamics\orocos_kdl\config\FindEigen3.cmake src\ros2\eigen3_cmake_module\cmake\Modules
 
 cd tools
 call colcon build --merge-install --cmake-args -DBUILD_TESTING=OFF
