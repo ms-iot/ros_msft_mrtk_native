@@ -24,8 +24,9 @@ jobs:
       buildVersionToDownload: 'latest' # Required when source == Specific# Options: latest, latestFromBranch, specific
       artifactName: 'ros2vcpkg'
   - script: |
+      dir %System_ArtifactsDirectory%
       mkdir c:\opt\vcpkg
-      move %System_ArtifactsDirectory%\ros2vcpkg c:\opt\vcpkg
+      7z x %System_ArtifactsDirectory%\ros2vcpkg.zip -o c:\opt\vcpkg
   - script: |
       call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       call init.cmd
@@ -39,5 +40,5 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: .\target\log
-      artifactName: '$(ROS_DISTRO)-log'
+      artifactName: ros2dotnet-log'
     condition: always()
