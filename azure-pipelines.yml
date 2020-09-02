@@ -19,7 +19,7 @@ jobs:
   - task: DownloadBuildArtifacts@0
     inputs:
       buildType: 'specific' # Options: current, specific
-      project: 'ros-win' # Required when source == Specific
+      project: 'mrtk_ros' # Required when source == Specific
       pipeline: 100 # Required when source == Specific
       buildVersionToDownload: 'latest' # Required when source == Specific# Options: latest, latestFromBranch, specific
       artifactName: 'ros2vcpkg'
