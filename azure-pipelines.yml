@@ -20,7 +20,7 @@ jobs:
     inputs:
       buildType: 'specific' # Options: current, specific
       project: 'mrtk_ros' # Required when source == Specific
-      pipeline: 100 # Required when source == Specific
+      pipeline: 110 # Required when source == Specific
       buildVersionToDownload: 'latest' # Required when source == Specific# Options: latest, latestFromBranch, specific
       artifactName: 'ros2vcpkg'
   - script: |
