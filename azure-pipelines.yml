@@ -24,7 +24,7 @@ jobs:
       buildVersionToDownload: 'latest' # Required when source == Specific# Options: latest, latestFromBranch, specific
       artifactName: 'ros2vcpkg'
   - script: |
-      dir %System_ArtifactsDirectory%
+      dir /s %System_ArtifactsDirectory%
       mkdir c:\opt\vcpkg
       7z x %System_ArtifactsDirectory%\ros2vcpkg.zip -oc:\opt\vcpkg
   - script: |
