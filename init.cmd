@@ -47,7 +47,7 @@ cd tools
 call colcon build --merge-install --cmake-args -DBUILD_TESTING=OFF
 cd ..
 
-goto :eol
+goto :eof
 
 :novcpkg
 echo "VCPkg not found at c:\opt\vcpkg\vcpkg.exe"
