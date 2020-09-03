@@ -50,5 +50,6 @@ jobs:
     displayName: 'NuGet push'
     inputs:
       command: push
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
       publishVstsFeed: $(ROSWinPublicFeedId)
       allowPackageConflicts: true
