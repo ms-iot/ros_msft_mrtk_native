@@ -41,5 +41,20 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: $(Build.StagingDirectory)\_\target\log
-      artifactName: ros2dotnet-log'
+      artifactName: 'ros2dotnet-log'
     condition: always()
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: $(Build.StagingDirectory)\_\nuget\Microsoft.ROS.MRTK.*
+      artifactName: 'nuget'
+  - task: NuGetCommand@2
+    displayName: 'NuGet push'
+    inputs:
+      packagesToPack: 'nuget'
+      command: pack
+  - task: NuGetCommand@2
+    displayName: 'NuGet push'
+    inputs:
+      command: push
+      publishVstsFeed: $(ROSWinPublicFeedId)
+      allowPackageConflicts: true
