@@ -44,7 +44,7 @@ jobs:
     displayName: 'NuGet pack'
     inputs:
       command: pack
-      packagesToPack: 'nuget/*.nuget'
+      packagesToPack: $(Build.StagingDirectory)\_\nuget\Microsoft.ROS.MRTK.Eloquent.nuspec
       packDestination: '$(Build.ArtifactStagingDirectory)'
   - task: NuGetCommand@2
     displayName: 'NuGet push'
