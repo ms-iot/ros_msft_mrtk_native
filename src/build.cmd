@@ -18,7 +18,7 @@ set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\arm64-uwp\bin;%PATH_ORIG%
 
 cmake ..\.. -A arm64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 
 
-msbuild ros-msft-mrtk-native.sln /property:Configuration=Release
+msbuild ros-msft-mrtk-native.sln /property:Configuration=Release /p:Platform="arm64"
 popd
 
 
@@ -29,7 +29,7 @@ set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x64-uwp\bin;%PATH_ORIG%
 
 cmake ..\.. -A x64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 
 
-msbuild ros-msft-mrtk-native.sln /property:Configuration=Release
+msbuild ros-msft-mrtk-native.sln /property:Configuration=Release /p:Platform="x64"
 popd
 
 
@@ -40,7 +40,7 @@ set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x86-uwp\bin;%PATH_ORIG%
 
 cmake ..\.. -A Win32 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 
 
-msbuild ros-msft-mrtk-native.sln /property:Configuration=Release
+msbuild ros-msft-mrtk-native.sln /property:Configuration=Release  /p:Platform="Win32"
 popd
 
 popd
