@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.ROS.MRTK.Eloquent.arm64</id>
+    <version>0.1.0</version>
+    <title>Microsoft MRTK Extension for ROS</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx</licenseUrl>
+    <projectUrl>https://github.com/ms-iot/ros_msft_mrtk_native</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Use the Mixed Reality Toolkit for Unity with ROS Robots</description>
+    <summary>Microsoft Mixed Reality Toolkit for ROS</summary>
+    <releaseNotes />
+    <copyright>Copyright 2020</copyright>
+    <tags>microsoft ROS native nativepackage</tags>
+  </metadata>
+
+  <files>
+    <file target="build\native\Microsoft.ROS.MRTK.targets" src="Microsoft.ROS.MRTK.targets" />
+    <!-- file target="lib\netcore" src="..\target\arm64\Lib\builtin_interfaces\dotnet\builtin_interfaces_assemblies.*" />
+    <file target="lib\netcore" src="..\target\arm64\Lib\rcldotnet\dotnet\System.*" />
+    <file target="lib\netcore" src="..\target\arm64\Lib\rcldotnet\dotnet\rcldotnet_assemblies.*" />
+    <file target="lib\netcore" src="..\target\arm64\Lib\rcldotnet_common\dotnet\rcldotnet_common.*" />
+    <file target="lib\netcore" src="..\target\arm64\Lib\rclcppdotnet\dotnet\rclcppdotnet_assemblies.*" />
+    <file target="lib\netcore" src="..\target\arm64\Lib\rcl_interfaces\dotnet\rcl_interfaces_assemblies.*" />
+
+    <file target="lib\netcore" src="..\target\arm64\lib\actionlib_msgs\dotnet\actionlib_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\actionlib_msgs\dotnet\std_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\action_msgs\dotnet\action_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\diagnostic_msgs\dotnet\diagnostic_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\geometry_msgs\dotnet\geometry_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\lifecycle_msgs\dotnet\lifecycle_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\nav_msgs\dotnet\nav_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\rosgraph_msgs\dotnet\rosgraph_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\sensor_msgs\dotnet\sensor_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\shape_msgs\dotnet\shape_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\stereo_msgs\dotnet\stereo_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\test_msgs\dotnet\test_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\tf2_msgs\dotnet\tf2_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\trajectory_msgs\dotnet\trajectory_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\unique_identifier_msgs\dotnet\unique_identifier_msgs_assemblies.dll" />
+    <file target="lib\netcore" src="..\target\arm64\lib\visualization_msgs\dotnet\visualization_msgs_assemblies.dll" / -->
+
+    <file target="runtimes\win10-arm64\native" src="..\target\arm64\bin\*.dll" />
+    <!-- file target="runtimes\win10-arm64\native" src="..\target\arm64\bin\*.pdb" / -->
+    <file target="runtimes\win10-arm64\native" src="C:\opt\vcpkg\buildtrees\apriltag\arm64-uwp-rel\Release\*.dll" />
+    <!-- file target="runtimes\win10-arm64\native" src="C:\opt\vcpkg\buildtrees\apriltag\arm64-uwp-rel\Release\*.pdb" / -->
+    <file target="runtimes\win10-arm64\native" src="C:\opt\vcpkg\installed\arm64-uwp\bin\*.dll" />
+    <!-- file target="runtimes\win10-arm64\native" src="C:\opt\vcpkg\installed\arm64-uwp\bin\*.pdb" / -->
+  </files>
+
+</package>
+
