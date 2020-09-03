@@ -44,7 +44,7 @@ jobs:
     displayName: 'NuGet pack'
     inputs:
       command: pack
-      packagesToPack: '**/*.nuget'
+      packagesToPack: 'nuget/*.nuget'
       packDestination: '$(Build.ArtifactStagingDirectory)'
   - task: NuGetCommand@2
     displayName: 'NuGet push'
