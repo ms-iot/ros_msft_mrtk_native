@@ -30,12 +30,9 @@ jobs:
       call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       call init.cmd
       call build.cmd
-      dir $(Build.StagingDirectory)\_
-      dir $(Build.StagingDirectory)\_\target
       cd src
       build.cmd
-      cd ..\nuget
-      call build_nuget.cmd
+      cd ..
     displayName: Build ROS2 Nuget Package
     workingDirectory: '$(Build.StagingDirectory)\_'
   - task: PublishBuildArtifacts@1
@@ -43,15 +40,12 @@ jobs:
       pathtoPublish: $(Build.StagingDirectory)\_\target\log
       artifactName: 'ros2dotnet-log'
     condition: always()
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: $(Build.StagingDirectory)\_\nuget\Microsoft.ROS.MRTK.*
-      artifactName: 'nuget'
   - task: NuGetCommand@2
-    displayName: 'NuGet push'
+    displayName: 'NuGet pack'
     inputs:
-      packagesToPack: 'nuget'
       command: pack
+      packagesToPack: '**/*.nuget'
+      packDestination: '$(Build.ArtifactStagingDirectory)'
   - task: NuGetCommand@2
     displayName: 'NuGet push'
     inputs:
