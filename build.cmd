@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 : @echo off
 setlocal enableextensions disabledelayedexpansion
 
@@ -14,6 +15,11 @@ echo "VSInstallDir is %VSINSTALLDIR%"
 set clean=true
 set DEBUG_CMD=
 
+=======
+@echo off
+setlocal enableextensions disabledelayedexpansion
+
+>>>>>>> c6ff0d8... Breakup nuget, fix pipeline
 :: Parse options
 :GETOPTS
  if /I "%~1" == "/?" goto USAGE
