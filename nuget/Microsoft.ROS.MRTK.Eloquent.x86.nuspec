@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>Microsoft.ROS.MRTK.Eloquent</id>
+    <id>Microsoft.ROS.MRTK.Eloquent.x86</id>
     <version>0.1.0</version>
     <title>Microsoft MRTK Extension for ROS</title>
     <authors>Microsoft</authors>
@@ -48,21 +48,6 @@
     <file target="runtimes\win10-x86\native" src="C:\opt\vcpkg\buildtrees\apriltag\x86-uwp-rel\Release\*.pdb" />
     <file target="runtimes\win10-x86\native" src="C:\opt\vcpkg\installed\x86-uwp\bin\*.dll" />
     <file target="runtimes\win10-x86\native" src="C:\opt\vcpkg\installed\x86-uwp\bin\*.pdb" />
-
-    <file target="runtimes\win10-arm64\native" src="..\target\arm64\bin\*.dll" />
-    <file target="runtimes\win10-arm64\native" src="..\target\arm64\bin\*.pdb" />
-    <file target="runtimes\win10-arm64\native" src="C:\opt\vcpkg\buildtrees\apriltag\arm64-uwp-rel\Release\*.dll" />
-    <file target="runtimes\win10-arm64\native" src="C:\opt\vcpkg\buildtrees\apriltag\arm64-uwp-rel\Release\*.pdb" />
-    <file target="runtimes\win10-arm64\native" src="C:\opt\vcpkg\installed\arm64-uwp\bin\*.dll" />
-    <file target="runtimes\win10-arm64\native" src="C:\opt\vcpkg\installed\arm64-uwp\bin\*.pdb" />
-
-    <file target="runtimes\win10-x64\native" src="..\target\x64\bin\*.dll" />
-    <file target="runtimes\win10-x64\native" src="..\target\x64\bin\*.pdb" />
-    <file target="runtimes\win10-x64\native" src="C:\opt\vcpkg\buildtrees\apriltag\x64-uwp-rel\Release\*.dll" />
-    <file target="runtimes\win10-x64\native" src="C:\opt\vcpkg\buildtrees\apriltag\x64-uwp-rel\Release\*.pdb" />
-    <file target="runtimes\win10-x64\native" src="C:\opt\vcpkg\installed\x64-uwp\bin\*.dll" />
-    <file target="runtimes\win10-x64\native" src="C:\opt\vcpkg\installed\x64-uwp\bin\*.pdb" />
-
   </files>
 
 </package>
