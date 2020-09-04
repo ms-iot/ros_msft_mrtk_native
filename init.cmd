@@ -31,6 +31,7 @@ choco upgrade ros-colcon-tools -y --execution-timeout=0 --pre
 set VCPKG_ROOT=c:\opt\vcpkg
 
 call pip install vcs
+call pip install lark-parser
 
 mkdir tools\src
 mkdir target\src

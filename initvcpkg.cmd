@@ -1,30 +1,18 @@
 @echo off
 setlocal enableextensions disabledelayedexpansion
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> c6ff0d8... Breakup nuget, fix pipeline
 :: Parse options
 :GETOPTS
  if /I "%~1" == "/?" goto USAGE
  if /I "%~1" == "/Help" goto USAGE
  if /I "%~1" == "/x86" set BUILD=x86
  if /I "%~1" == "/arm64" set BUILD=arm64
-<<<<<<< HEAD
  if /I "%~1" == "/arm" set BUILD=arm
  if /I "%~1" == "/x64" set BUILD=x64
  if /I "%~1" == "/unity" set BUILD=unity
  shift
 if not (%1)==() goto GETOPTS
 
-=======
->>>>>>> afd4467... Add separate vcpkg build for speed
-=======
- shift
-if not (%1)==() goto GETOPTS
-
->>>>>>> c6ff0d8... Breakup nuget, fix pipeline
 set PATH_ORIG=%PATH%
 set PATH=c:\opt\vcpkg;c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;C:\opt\python37amd64\DLLs;%PATH%
 set VCPKG_ROOT=c:\opt\vcpkg
