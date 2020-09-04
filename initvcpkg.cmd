@@ -7,6 +7,7 @@ setlocal enableextensions disabledelayedexpansion
  if /I "%~1" == "/Help" goto USAGE
  if /I "%~1" == "/x86" set BUILD=x86
  if /I "%~1" == "/arm64" set BUILD=arm64
+ if /I "%~1" == "/arm" set BUILD=arm
  shift
 if not (%1)==() goto GETOPTS
 
@@ -26,6 +27,7 @@ vcpkg install foonathan-memory:x86-windows
 
 if "%BUILD%"=="x86" goto :build_x86
 if "%BUILD%"=="arm64" goto :build_arm64
+if "%BUILD%"=="arm" goto :build_arm
 
 
 :build_arm64
@@ -38,6 +40,17 @@ vcpkg install eigen3:arm64-uwp
 vcpkg install foonathan-memory[core]:arm64-uwp
 vcpkg install poco:arm64-uwp
 if "%BUILD%"=="arm64" goto :eof
+
+:build_arm
+vcpkg install protobuf:arm-uwp
+vcpkg install asio:arm-uwp
+vcpkg install tinyxml2:arm-uwp
+vcpkg install opencv4[core]:arm-uwp
+vcpkg install apriltag[core]:arm-uwp
+vcpkg install eigen3:arm-uwp
+vcpkg install foonathan-memory[core]:arm-uwp
+vcpkg install poco:arm-uwp
+if "%BUILD%"=="arm" goto :eof
 
 :build_x64
 vcpkg install protobuf:x64-uwp
