@@ -18,7 +18,7 @@
 
   <files>
     <file target="build\native\Microsoft.ROS.MRTK.targets" src="Microsoft.ROS.MRTK.targets" />
-    <!-- file target="lib\netcore" src="..\target\arm64\Lib\builtin_interfaces\dotnet\builtin_interfaces_assemblies.*" />
+    <file target="lib\netcore" src="..\target\arm64\Lib\builtin_interfaces\dotnet\builtin_interfaces_assemblies.*" />
     <file target="lib\netcore" src="..\target\arm64\Lib\rcldotnet\dotnet\System.*" />
     <file target="lib\netcore" src="..\target\arm64\Lib\rcldotnet\dotnet\rcldotnet_assemblies.*" />
     <file target="lib\netcore" src="..\target\arm64\Lib\rcldotnet_common\dotnet\rcldotnet_common.*" />
@@ -40,7 +40,7 @@
     <file target="lib\netcore" src="..\target\arm64\lib\tf2_msgs\dotnet\tf2_msgs_assemblies.dll" />
     <file target="lib\netcore" src="..\target\arm64\lib\trajectory_msgs\dotnet\trajectory_msgs_assemblies.dll" />
     <file target="lib\netcore" src="..\target\arm64\lib\unique_identifier_msgs\dotnet\unique_identifier_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\arm64\lib\visualization_msgs\dotnet\visualization_msgs_assemblies.dll" / -->
+    <file target="lib\netcore" src="..\target\arm64\lib\visualization_msgs\dotnet\visualization_msgs_assemblies.dll" />
 
     <file target="runtimes\win10-arm64\native" src="..\target\arm64\bin\*.dll" />
     <!-- file target="runtimes\win10-arm64\native" src="..\target\arm64\bin\*.pdb" / -->

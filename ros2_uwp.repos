@@ -109,7 +109,7 @@ repositories:
     version: master
   ros2_dotnet/ros2_dotnet:
     type: git
-    url: https://github.com/Camelron/ros2_dotnet
+    url: https://github.com/ooeygui/ros2_dotnet
     version: master
   ros2_dotnet/dotnet_cmake_module:
     type: git

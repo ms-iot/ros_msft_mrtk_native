@@ -1,4 +1,4 @@
-@echo off
+: @echo off
 setlocal enableextensions disabledelayedexpansion
 
 :: Parse options
@@ -21,13 +21,13 @@ set PATH_ORIG=%PATH%
 set VCPKG_ROOT=c:\opt\vcpkg
 set PYTHONHOME=C:\opt\python37amd64\
 
+call tools\install\local_setup.bat
+
 if "%BUILD%"=="x86" goto :build_x86
 if "%BUILD%"=="arm64" goto :build_arm64
 
 set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/x64-uwp;%CMAKE_PREFIX_PATH_ORIG%
 set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x64-uwp\bin;%PATH_ORIG%
-
-call tools\install\local_setup.bat
 
 :build_x64
 set ROS2_ARCH=x64
