@@ -47,6 +47,11 @@ jobs:
       basePath: $(Build.StagingDirectory)\_\nuget
       packagesToPack: $(Build.StagingDirectory)\_\nuget\Microsoft.ROS.MRTK.Eloquent.nuspec
       packDestination: '$(Build.ArtifactStagingDirectory)'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: $(Build.ArtifactStagingDirectory)
+      artifactName: 'ros2dotnet-nuget'
+    condition: always()
   - task: NuGetCommand@2
     displayName: 'NuGet push'
     inputs:
