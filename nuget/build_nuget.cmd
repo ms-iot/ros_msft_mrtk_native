@@ -8,7 +8,9 @@ set NUSPEC="Microsoft.ROS.MRTK.Eloquent.nuspec"
  if /I "%~1" == "/Help" goto USAGE
  if /I "%~1" == "/clean" set CLEAN=1
  if /I "%~1" == "/nopack" set NOPACK=1
+ if /I "%~1" == "/arm" set NUSPEC="Microsoft.ROS.MRTK.Eloquent.arm.nuspec"
  if /I "%~1" == "/x86" set NUSPEC="Microsoft.ROS.MRTK.Eloquent.x86.nuspec"
+ if /I "%~1" == "/x64" set NUSPEC="Microsoft.ROS.MRTK.Eloquent.x64.nuspec"
  if /I "%~1" == "/arm64" set NUSPEC="Microsoft.ROS.MRTK.Eloquent.arm64.nuspec"
  shift
 if not (%1)==() goto GETOPTS

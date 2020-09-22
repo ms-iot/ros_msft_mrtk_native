@@ -26,6 +26,7 @@ vcpkg install protobuf:x86-windows
 vcpkg install foonathan-memory:x86-windows
 
 if "%BUILD%"=="x86" goto :build_x86
+if "%BUILD%"=="x64" goto :build_x64
 if "%BUILD%"=="arm64" goto :build_arm64
 if "%BUILD%"=="arm" goto :build_arm
 
@@ -60,6 +61,7 @@ vcpkg install apriltag[core]:x64-uwp
 vcpkg install eigen3:x64-uwp
 vcpkg install foonathan-memory[core]:x64-uwp
 vcpkg install poco:x64-uwp
+if "%BUILD%"=="x64" goto :eof
 
 :build_x86
 vcpkg install protobuf:x86-uwp
@@ -69,3 +71,4 @@ vcpkg install apriltag[core]:x86-uwp
 vcpkg install eigen3:x86-uwp
 vcpkg install foonathan-memory:x86-uwp
 vcpkg install poco:x86-uwp
+if "%BUILD%"=="x86" goto :eof

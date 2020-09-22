@@ -18,29 +18,29 @@
 
   <files>
     <file target="build\native\Microsoft.ROS.MRTK.targets" src="Microsoft.ROS.MRTK.targets" />
-    <file target="lib\netcore" src="..\target\x86\Lib\builtin_interfaces\dotnet\builtin_interfaces_assemblies.*" />
-    <file target="lib\netcore" src="..\target\x86\Lib\rcldotnet\dotnet\System.*" />
-    <file target="lib\netcore" src="..\target\x86\Lib\rcldotnet\dotnet\rcldotnet_assemblies.*" />
-    <file target="lib\netcore" src="..\target\x86\Lib\rcldotnet_common\dotnet\rcldotnet_common.*" />
-    <file target="lib\netcore" src="..\target\x86\Lib\rclcppdotnet\dotnet\rclcppdotnet_assemblies.*" />
-    <file target="lib\netcore" src="..\target\x86\Lib\rcl_interfaces\dotnet\rcl_interfaces_assemblies.*" />
+    <file target="lib\netstandard2.0" src="..\target\x86\Lib\builtin_interfaces\dotnet\builtin_interfaces_assemblies.*" />
+    <file target="lib\netstandard2.0" src="..\target\x86\Lib\rcldotnet\dotnet\System.*" />
+    <file target="lib\netstandard2.0" src="..\target\x86\Lib\rcldotnet\dotnet\rcldotnet_assemblies.*" />
+    <file target="lib\netstandard2.0" src="..\target\x86\Lib\rcldotnet_common\dotnet\rcldotnet_common.*" />
+    <file target="lib\netstandard2.0" src="..\target\x86\Lib\rclcppdotnet\dotnet\rclcppdotnet_assemblies.*" />
+    <file target="lib\netstandard2.0" src="..\target\x86\Lib\rcl_interfaces\dotnet\rcl_interfaces_assemblies.*" />
 
-    <file target="lib\netcore" src="..\target\x86\lib\actionlib_msgs\dotnet\actionlib_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\actionlib_msgs\dotnet\std_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\action_msgs\dotnet\action_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\diagnostic_msgs\dotnet\diagnostic_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\geometry_msgs\dotnet\geometry_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\lifecycle_msgs\dotnet\lifecycle_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\nav_msgs\dotnet\nav_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\rosgraph_msgs\dotnet\rosgraph_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\sensor_msgs\dotnet\sensor_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\shape_msgs\dotnet\shape_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\stereo_msgs\dotnet\stereo_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\test_msgs\dotnet\test_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\tf2_msgs\dotnet\tf2_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\trajectory_msgs\dotnet\trajectory_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\unique_identifier_msgs\dotnet\unique_identifier_msgs_assemblies.dll" />
-    <file target="lib\netcore" src="..\target\x86\lib\visualization_msgs\dotnet\visualization_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\actionlib_msgs\dotnet\actionlib_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\actionlib_msgs\dotnet\std_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\action_msgs\dotnet\action_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\diagnostic_msgs\dotnet\diagnostic_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\geometry_msgs\dotnet\geometry_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\lifecycle_msgs\dotnet\lifecycle_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\nav_msgs\dotnet\nav_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\rosgraph_msgs\dotnet\rosgraph_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\sensor_msgs\dotnet\sensor_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\shape_msgs\dotnet\shape_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\stereo_msgs\dotnet\stereo_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\test_msgs\dotnet\test_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\tf2_msgs\dotnet\tf2_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\trajectory_msgs\dotnet\trajectory_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\unique_identifier_msgs\dotnet\unique_identifier_msgs_assemblies.dll" />
+    <file target="lib\netstandard2.0" src="..\target\x86\lib\visualization_msgs\dotnet\visualization_msgs_assemblies.dll" />
 
     <file target="runtimes\win10-x86\native" src="..\target\x86\bin\*.dll" />
     <file target="runtimes\win10-x86\native" src="..\target\x86\bin\*.pdb" />
