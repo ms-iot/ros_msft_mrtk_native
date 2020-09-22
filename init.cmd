@@ -1,7 +1,7 @@
 @echo off
 setlocal enableextensions disabledelayedexpansion
 
-call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
 
 if NOT EXIST "c:\opt\vcpkg\vcpkg.exe" goto :novcpkg
 
