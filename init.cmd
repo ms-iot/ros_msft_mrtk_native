@@ -1,9 +1,9 @@
 @echo off
 setlocal enableextensions disabledelayedexpansion
 
-echo "VSInstallDir is " %VSINSTALLDIR%
+echo "VSInstallDir is %VSINSTALLDIR%"
 
-if "%VSINSTALLDIR%" == "" set VSINSTALLDIR="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\"
+if "%VSINSTALLDIR%" == "" set VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
 
 call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
 
