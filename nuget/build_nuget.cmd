@@ -1,5 +1,8 @@
 @echo off
 setlocal enableextensions disabledelayedexpansion
+if "%VSINSTALLDIR%" == "" set VSINSTALLDIR="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\"
+call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
+
 set NUSPEC="Microsoft.ROS.MRTK.Eloquent.nuspec"
 
 :: Parse options
