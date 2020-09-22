@@ -65,7 +65,7 @@ popd
 
 mkdir Win32
 pushd Win32
-call "call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
+call ""%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
 \VC\Auxiliary\Build\vcvarsamd64_x86.bat"
 set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/x86-uwp;%CMAKE_PREFIX_PATH_ORIG%
 set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x86-uwp\bin;%PATH_ORIG%
