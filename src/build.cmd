@@ -1,6 +1,16 @@
 @echo off
 setlocal enableextensions
-if "%VSINSTALLDIR%" == "" set VSINSTALLDIR="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+
+
+if "%VSINSTALLDIR%" == "" (
+    if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community" (
+        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community"
+    )
+    if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise" (
+        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+    )
+)    
+echo "VSInstallDir is %VSINSTALLDIR%"
 
 
 if "%VSINSTALLDIR%" == "" (
