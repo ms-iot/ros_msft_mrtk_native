@@ -1,6 +1,16 @@
 @echo off
 setlocal enableextensions
-if "%VSINSTALLDIR%" == "" set VSINSTALLDIR="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+
+
+if "%VSINSTALLDIR%" == "" (
+    if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community" (
+        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community"
+    )
+    if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise" (
+        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+    )
+)    
+echo "VSInstallDir is %VSINSTALLDIR%"
 
 set CMAKE_PREFIX_PATH_ORIG=%CMAKE_PREFIX_PATH%
 set PATH=c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;C:\opt\python37amd64\DLLs;%PATH%

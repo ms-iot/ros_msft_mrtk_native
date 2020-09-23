@@ -1,11 +1,16 @@
 @echo off
 setlocal enableextensions disabledelayedexpansion
 
+
+if "%VSINSTALLDIR%" == "" (
+    if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community" (
+        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community"
+    )
+    if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise" (
+        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+    )
+)    
 echo "VSInstallDir is %VSINSTALLDIR%"
-
-if "%VSINSTALLDIR%" == "" set VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise
-
-call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
 
 if NOT EXIST "c:\opt\vcpkg\vcpkg.exe" goto :novcpkg
 
