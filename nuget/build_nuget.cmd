@@ -43,6 +43,9 @@ IF ERRORLEVEL 1 (
     echo Please install nuget.exe from http://nuget.org
     goto err
 )
+
+dir ..\target
+
 nuget pack %NUSPEC% -NoPackageAnalysis || goto err
 
 :end
