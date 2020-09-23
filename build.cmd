@@ -11,7 +11,7 @@ if "%VSINSTALLDIR%" == "" (
 )    
 echo "VSInstallDir is %VSINSTALLDIR%"
 
-
+set clean=true
 
 if "%VSINSTALLDIR%" == "" (
     if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community" (
