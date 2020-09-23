@@ -11,6 +11,8 @@ if "%VSINSTALLDIR%" == "" (
     )
 )    
 echo "VSInstallDir is %VSINSTALLDIR%"
+call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
+
 
 if NOT EXIST "c:\opt\vcpkg\vcpkg.exe" goto :novcpkg
 
