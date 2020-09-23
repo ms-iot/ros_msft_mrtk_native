@@ -1,6 +1,6 @@
 @echo off
 setlocal enableextensions
-if "%VSINSTALLDIR%" == "" set VSINSTALLDIR="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\"
+if "%VSINSTALLDIR%" == "" set VSINSTALLDIR="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
 
 set CMAKE_PREFIX_PATH_ORIG=%CMAKE_PREFIX_PATH%
 set PATH=c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;C:\opt\python37amd64\DLLs;%PATH%
@@ -15,9 +15,9 @@ pushd build
 mkdir arm64
 pushd arm64
 
-call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvarsamd64_arm64.bat"
 set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/arm64-uwp;%CMAKE_PREFIX_PATH_ORIG%
 set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\arm64-uwp\bin;%PATH_ORIG%
+call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvarsamd64_arm64.bat"
 
 cmake ..\.. -A arm64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 
 
@@ -39,9 +39,9 @@ popd
 
 mkdir x64
 pushd x64
-call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
 set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/x64-uwp;%CMAKE_PREFIX_PATH_ORIG%
 set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x64-uwp\bin;%PATH_ORIG%
+call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
 
 
 cmake ..\.. -A x64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 
@@ -52,11 +52,9 @@ popd
 
 mkdir Win32
 pushd Win32
-call ""%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
-\VC\Auxiliary\Build\vcvarsamd64_x86.bat"
 set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/x86-uwp;%CMAKE_PREFIX_PATH_ORIG%
 set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x86-uwp\bin;%PATH_ORIG%
-
+call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvarsamd64_x86.bat"
 
 cmake ..\.. -A Win32 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 
 
