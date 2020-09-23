@@ -4,10 +4,10 @@ setlocal enableextensions disabledelayedexpansion
 
 if "%VSINSTALLDIR%" == "" (
     if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community" (
-        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community"
+        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\"
     )
     if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise" (
-        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\"
     )
 )    
 echo "VSInstallDir is %VSINSTALLDIR%"
@@ -43,7 +43,7 @@ choco upgrade ros-colcon-tools -y --execution-timeout=0 --pre
 
 set VCPKG_ROOT=c:\opt\vcpkg
 
-call pip install vcs
+call pip install vcstool
 call pip install lark-parser
 
 mkdir tools\src
