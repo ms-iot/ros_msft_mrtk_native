@@ -25,6 +25,7 @@ set NUSPEC="Microsoft.ROS.MRTK.Eloquent.nuspec"
  if /I "%~1" == "/x86" set NUSPEC="Microsoft.ROS.MRTK.Eloquent.x86.nuspec"
  if /I "%~1" == "/x64" set NUSPEC="Microsoft.ROS.MRTK.Eloquent.x64.nuspec"
  if /I "%~1" == "/arm64" set NUSPEC="Microsoft.ROS.MRTK.Eloquent.arm64.nuspec"
+ if /I "%~1" == "/unity" set NUSPEC="Microsoft.ROS.MRTK.Eloquent.unity.nuspec"
  shift
 if not (%1)==() goto GETOPTS
 

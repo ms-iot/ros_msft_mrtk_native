@@ -8,6 +8,8 @@ setlocal enableextensions disabledelayedexpansion
  if /I "%~1" == "/x86" set BUILD=x86
  if /I "%~1" == "/arm64" set BUILD=arm64
  if /I "%~1" == "/arm" set BUILD=arm
+ if /I "%~1" == "/x64" set BUILD=x64
+ if /I "%~1" == "/unity" set BUILD=unity
  shift
 if not (%1)==() goto GETOPTS
 
@@ -29,7 +31,17 @@ if "%BUILD%"=="x86" goto :build_x86
 if "%BUILD%"=="x64" goto :build_x64
 if "%BUILD%"=="arm64" goto :build_arm64
 if "%BUILD%"=="arm" goto :build_arm
+if "%BUILD%"=="unity" goto :build_unity
 
+:build_x86
+vcpkg install protobuf:x86-uwp
+vcpkg install asio:x86-uwp
+vcpkg install opencv4[core]:x86-uwp
+vcpkg install apriltag[core]:x86-uwp
+vcpkg install eigen3:x86-uwp
+vcpkg install foonathan-memory:x86-uwp
+vcpkg install poco:x86-uwp
+if "%BUILD%"=="x86" goto :eof
 
 :build_arm64
 vcpkg install protobuf:arm64-uwp
@@ -63,12 +75,13 @@ vcpkg install foonathan-memory[core]:x64-uwp
 vcpkg install poco:x64-uwp
 if "%BUILD%"=="x64" goto :eof
 
-:build_x86
-vcpkg install protobuf:x86-uwp
-vcpkg install asio:x86-uwp
-vcpkg install opencv4[core]:x86-uwp
-vcpkg install apriltag[core]:x86-uwp
-vcpkg install eigen3:x86-uwp
-vcpkg install foonathan-memory:x86-uwp
-vcpkg install poco:x86-uwp
-if "%BUILD%"=="x86" goto :eof
+:build_unity
+vcpkg install protobuf:x64-windows
+vcpkg install asio:x64-windows
+vcpkg install opencv4[core]:x64-windows
+vcpkg install apriltag[core]:x64-windows
+vcpkg install eigen3:x64-windows
+vcpkg install foonathan-memory[core]:x64-windows
+vcpkg install poco:x64-windows
+if "%BUILD%"=="unity" goto :eof
+
