@@ -1,6 +1,19 @@
 @echo off
 setlocal enableextensions disabledelayedexpansion
 
+
+if "%VSINSTALLDIR%" == "" (
+    if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community" (
+        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\"
+    )
+    if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise" (
+        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\"
+    )
+)    
+echo "VSInstallDir is %VSINSTALLDIR%"
+call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
+
+
 if NOT EXIST "c:\opt\vcpkg\vcpkg.exe" goto :novcpkg
 
 
@@ -14,11 +27,10 @@ choco upgrade ros-colcon-tools -y --execution-timeout=0 --pre
 : choco upgrade ros_vcpkg -y --execution-timeout=0 --pre
 : include staged vcpkgs
 
-set PATH_ORIG=%PATH%
-set PATH=c:\opt\vcpkg;c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;C:\opt\python37amd64\DLLs;%PATH%
 set VCPKG_ROOT=c:\opt\vcpkg
 
-call pip install vcs
+call pip install vcstool
+call pip install lark-parser
 
 mkdir tools\src
 mkdir target\src
@@ -28,18 +40,12 @@ vcs import src < ..\build_tools.repos
 
 cd ..\target
 vcs import src < ..\ros2_uwp.repos
+xcopy /y src\ros2\orocos_kinematics_dynamics\orocos_kdl\config\FindEigen3.cmake src\ros2\eigen3_cmake_module\cmake\Modules
 cd ..
 
-xcopy /y src\ros2\orocos_kinematics_dynamics\orocos_kdl\config\FindEigen3.cmake src\ros2\eigen3_cmake_module\cmake\Modules
 
 cd tools
 call colcon build --merge-install --cmake-args -DBUILD_TESTING=OFF
 cd ..
-
-goto :eol
-
-:novcpkg
-echo "VCPkg not found at c:\opt\vcpkg\vcpkg.exe"
-dir c:\opt
 
 exit /1

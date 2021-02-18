@@ -19,25 +19,42 @@ jobs:
   - task: DownloadBuildArtifacts@0
     inputs:
       buildType: 'specific' # Options: current, specific
-      project: 'ros-win' # Required when source == Specific
-      pipeline: 100 # Required when source == Specific
+      project: 'mrtk_ros' # Required when source == Specific
+      pipeline: 110 # Required when source == Specific
       buildVersionToDownload: 'latest' # Required when source == Specific# Options: latest, latestFromBranch, specific
       artifactName: 'ros2vcpkg'
   - script: |
       mkdir c:\opt\vcpkg
-      move %System_ArtifactsDirectory%\ros2vcpkg c:\opt\vcpkg
+      7z x %System_ArtifactsDirectory%\ros2vcpkg\vcpkg.zip.001 -oc:\opt
+    displayName: Initialize vcpkg
   - script: |
-      call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       call init.cmd
       call build.cmd
       cd src
       build.cmd
-      cd ..\nuget
-      call build_nuget.cmd
-    displayName: Build ROS2 Nuget Package
+      cd ..
+    displayName: Build ROS2 Components
     workingDirectory: '$(Build.StagingDirectory)\_'
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: .\target\log
-      artifactName: '$(ROS_DISTRO)-log'
+      pathtoPublish: $(Build.StagingDirectory)\_\target\log
+      artifactName: 'ros2dotnet-log'
     condition: always()
+  - task: NuGetCommand@2
+    displayName: 'NuGet pack'
+    inputs:
+      command: pack
+      basePath: $(Build.StagingDirectory)\_\nuget
+      packagesToPack: $(Build.StagingDirectory)\_\nuget\Microsoft.ROS.MRTK.Eloquent.nuspec
+      packDestination: '$(Build.ArtifactStagingDirectory)/nuget'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: $(Build.ArtifactStagingDirectory)/nuget
+      artifactName: 'ros2dotnet-nuget'
+  - task: NuGetCommand@2
+    displayName: 'NuGet push'
+    inputs:
+      command: push
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/nuget/*.nupkg'
+      publishVstsFeed: $(ROSWinPublicFeedId)
+      allowPackageConflicts: true

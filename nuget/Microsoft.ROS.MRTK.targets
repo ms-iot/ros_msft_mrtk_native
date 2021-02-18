@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetPlatformIdentifier)' == 'UAP'">
-    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(targetPlatform)\native\Microsoft.Microsoft.ROS.MRTK.dll" />
+    <ReferenceCopyLocalPaths Include="$(MSBuildThisFileDirectory)..\..\native\win10-$(targetPlatform)" />
   </ItemGroup>
 
   <ItemDefinitionGroup>
@@ -15,16 +15,14 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
       <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\include\avr;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\include\avr;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>Microsoft.Microsoft.ROS.MRTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)..\..\lib\win10-$(targetPlatform)\native;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)..\..\lib\native\win10-$(targetPlatform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
 
