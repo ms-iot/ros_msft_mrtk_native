@@ -1,8 +1,26 @@
-ros_msft_mrtk_native
+# ROS2 Native for UWP & Hololens
 ====================
-This repository contains supporting C wrappers for the [ros_msft_mrtk project](https://github.com/ms-iot/ros_msft_mrtk)
+This repository builds the native components as a nuget package or Unity Package Manager package required to support ROS2 on UWP devices and Hololens. The related project [ros_msft_mrtk](https://github.com/ms-iot/ros_msft_mrtk), contains a Unity Project, ROS2.net utilities, and Mixed Reality Toolkit assets for Robotics. These projects can be used independently.
 
-## Opencv4 Calibration Wrapper
+## Using the ROS2 Nuget in your UWP application
+This project builds and publishes a nuget package named Microsoft.ROS.MRTK.<distro> to the nuget compatible Azure Artifact feed for ROS.
+
+To consume the nuget package from a UWP application:
+
+1. In Visual Studio, Add a nuget feed for `https://aka.ms/ros/public`.
+1. locate Microsoft.ROS.MRTK.Foxy, and install it.
+1. Now you can initialize it and perform pub/sub or use Action Servers.
+
+A Sample project is **coming soon**.
+
+## Using ROS2 from Unity
+This project also builds and publishes a Unity Package Manager package to the npm compatible Azure Artifact Feed for ROS
+To consume the output from a Unity application, follow the instructions on the [Unity documentation for adding a new feed](https://docs.unity3d.com/Manual/upm-ui.html), and installing `Microsoft.ROS.MRTK.Foxy` into your project.
+
+
+
+
+## Opencv4 Calibration Tool
 This C wrapper exposes three functions for the explicit purpose of calibrating a new webcam using the [opencv checkerboard pattern](https://docs.opencv.org/3.1.0/pattern.png).
 
 ### Usage
@@ -12,8 +30,3 @@ This C wrapper exposes three functions for the explicit purpose of calibrating a
 3. Supply at least 15 varied images (more is better).
 4. Use `calibrate()` to calculate and output the camera intrinsics using the information supplied by previous calls to `supply_calibration_image(img*)`
 5. Once satisfied with the calibration results, call `clear_calibration_images()` to clear the wrapper of all supplied images. It is now safe for the caller to free supplied images.
-
-
-
-# Todo
-- [] Fix Poco_vendor. Requires patches to util.h & platform.h to add defined(_M_ARM64) for ARM64 support on Hololens 2

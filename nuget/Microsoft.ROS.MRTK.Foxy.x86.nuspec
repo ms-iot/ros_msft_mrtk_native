@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.ROS.MRTK.Foxy.x86</id>
+    <version>0.1.0</version>
+    <title>Microsoft MRTK Extension for ROS</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx</licenseUrl>
+    <projectUrl>https://github.com/ms-iot/ros_msft_mrtk_native</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Use the Mixed Reality Toolkit for Unity with ROS Robots</description>
+    <summary>Microsoft Mixed Reality Toolkit for ROS</summary>
+    <releaseNotes />
+    <copyright>Copyright 2020</copyright>
+    <tags>microsoft ROS native nativepackage</tags>
+  </metadata>
+
+  <files>
+    <file target="build\Microsoft.ROS.MRTK.Foxy.x86.targets" src="Microsoft.ROS.MRTK.targets" />
+
+    <file target="lib\native\win10-x86" src="..\target\x86\bin\*.dll" />
+    <file target="lib\native\win10-x86" src="..\target\x86\bin\*.pdb" />
+    <file target="lib\native\win10-x86" src="..\target\x86\lib\**\*.*"/>
+    <file target="include" src="..\target\x86\include\**\*.*" />
+  </files>
+
+</package>
+
