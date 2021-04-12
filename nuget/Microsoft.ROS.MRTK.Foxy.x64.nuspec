@@ -6,7 +6,7 @@
     <title>Microsoft MRTK Extension for ROS</title>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
-    <licenseUrl>http://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx</licenseUrl>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/ms-iot/ros_msft_mrtk_native</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Use the Mixed Reality Toolkit for Unity with ROS Robots</description>
@@ -49,8 +49,6 @@
     <file target="lib\native\win10-x64" src="..\target\x64\lib\unique_identifier_msgs\dotnet\unique_identifier_msgs_assemblies.dll" />
     <file target="lib\native\win10-x64" src="..\target\x64\lib\visualization_msgs\dotnet\visualization_msgs_assemblies.dll" />
 
-    <file target="lib\native\win10-x64" src="C:\opt\vcpkg\buildtrees\apriltag\x64-uwp-rel\Release\*.dll" />
-    <file target="lib\native\win10-x64" src="C:\opt\vcpkg\buildtrees\apriltag\x64-uwp-rel\Release\*.pdb" />
     <file target="lib\native\win10-x64" src="C:\opt\vcpkg\installed\x64-uwp\bin\*.dll" />
     <file target="lib\native\win10-x64" src="C:\opt\vcpkg\installed\x64-uwp\bin\*.pdb" />
 -->

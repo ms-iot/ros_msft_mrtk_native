@@ -6,7 +6,7 @@
     <title>Microsoft MRTK Extension for ROS</title>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
-    <licenseUrl>http://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx</licenseUrl>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/ms-iot/ros_msft_mrtk_native</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Use the Mixed Reality Toolkit for Unity with ROS Robots</description>

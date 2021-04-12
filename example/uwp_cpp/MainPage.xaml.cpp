@@ -4,12 +4,10 @@
 //
 
 #include "pch.h"
+#include <ppltasks.h>
 #include "MainPage.xaml.h"
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
 
 using namespace uwp_cpp;
-
 using namespace Platform;
 using namespace Windows::Foundation;
 using namespace Windows::Foundation::Collections;
@@ -25,25 +23,26 @@ using namespace Windows::UI::Xaml::Navigation;
 
 using std::placeholders::_1;
 
-class MinimalSubscriber : public rclcpp::Node
-{
-public:
-    MinimalSubscriber()
+MinimalSubscriber::MinimalSubscriber()
         : Node("minimal_subscriber")
     {
         subscription_ = this->create_subscription<std_msgs::msg::String>(
             "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
     }
 
-private:
-    void topic_callback(const std_msgs::msg::String::SharedPtr msg) const
-    {
-        RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
-    }
-    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
-};
+void MinimalSubscriber ::topic_callback(const std_msgs::msg::String::SharedPtr msg) const
+{
+    OutputDebugStringA(msg->data.c_str());
+    OutputDebugStringA("\n");
+}
 
 MainPage::MainPage()
 {
 	InitializeComponent();
+    rclcpp::init(0, nullptr);  
+    _minSubscriber = std::make_shared<MinimalSubscriber>();
+    auto node_spinner = concurrency::create_task([this]
+        {
+            rclcpp::spin(_minSubscriber);
+        });
 }
