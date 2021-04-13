@@ -15,6 +15,8 @@ call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
 
 set NUSPEC="Microsoft.ROS.MRTK.Foxy.nuspec"
 
+pushd nuget
+
 :: Parse options
 :GETOPTS
  if /I "%~1" == "/?" goto USAGE
@@ -45,15 +47,15 @@ IF ERRORLEVEL 1 (
     goto err
 )
 
-dir ..\target
-
 nuget pack %NUSPEC% -NoPackageAnalysis || goto err
 
 :end
+popd
 
 echo Success
 exit /b 0
 
 :err
+  popd
   echo Script failed!
   exit /b 1

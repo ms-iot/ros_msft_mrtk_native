@@ -17,7 +17,7 @@
   </metadata>
 
   <files>
-    <file target="build\Microsoft.ROS.MRTK.Foxy.arm.targets" src="Microsoft.ROS.MRTK.targets" />
+    <file target="build\Microsoft.ROS.MRTK.Foxy.arm64.targets" src="Microsoft.ROS.MRTK.targets" />
 
     <file target="lib\native\win10-arm64" src="..\target\arm64\bin\*.dll" />
     <file target="lib\native\win10-arm64" src="..\target\arm64\bin\*.pdb" />
