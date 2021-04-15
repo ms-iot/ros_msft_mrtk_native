@@ -125,6 +125,8 @@ endlocal
 popd
 if "%BUILD%"=="arm64" goto :eof
 
+
+
 :build_arm
 setlocal
 set ROS2_ARCH=arm
@@ -135,13 +137,19 @@ set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/arm-uwp;%CMAKE_PREFIX_PATH_ORIG%
 set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\arm-uwp\bin;%PATH_ORIG%
 call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvarsamd64_arm.bat"
 
-if "%clean%"=="true" rd /s /q build
-: arm32 is broken at the moment.
-if exist arm (ren arm install)
-: call colcon build --event-handlers console_cohesion+ --merge-install --packages-ignore tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm64 -DDOTNET_CORE_ARCH=arm -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev
-: if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-: if exist arm (rd /y /s arm)
-: ren install arm
+if exist arm ren arm install
+if exist arm_build ren arm_build build
+if "%clean%"=="true" (
+    if exist build rd /s /q build
+    if exist install rd /s /q install
+)
+
+call colcon build --event-handlers console_cohesion+ --merge-install --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm -DDOTNET_CORE_ARCH=arm -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev
+if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
+if exist arm (rd /y /s arm)
+if exist arm_build (rd /y /s arm_build)
+ren install arm
+ren build arm_build
 endlocal
 popd
 if "%BUILD%"=="arm" goto :eof

@@ -59,6 +59,20 @@ ren install unity_build
 popd
 if "%BUILD%"=="unity" goto :eof
 
+:build_x64
+set ROS2_ARCH=x64
+if "%clean%"=="true" rd /s /q build
+if exist x64 (ren x64 install)
+if exist x64_build (ren x64_build build)
+call colcon build --event-handlers console_cohesion+ --merge-install --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
+if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
+if exist x64 (rd /y /s x64)
+if exist x64_build (rd /y /s x64_build)
+ren install x64
+ren install x64_build
+popd
+if "%BUILD%"=="x64" goto :eof
+
 
 :build_arm64
 set ROS2_ARCH=arm64
@@ -73,6 +87,22 @@ ren install arm64
 ren build arm64_build
 popd
 if "%BUILD%"=="build_arm64" goto :eof
+
+:build_arm
+set ROS2_ARCH=arm
+if "%clean%"=="true" rd /s /q build
+if exist arm (ren arm install)
+if exist arm_build (ren arm_build build)
+call colcon build --event-handlers console_cohesion+ --merge-install --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm -DDOTNET_CORE_ARCH=arm -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
+if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
+if exist arm (rd /y /s arm)
+if exist arm_build (rd /y /s arm_build)
+ren install arm
+ren build arm_build
+popd
+if "%BUILD%"=="build_arm64" goto :eof
+
+popd
 
 goto :eof
 

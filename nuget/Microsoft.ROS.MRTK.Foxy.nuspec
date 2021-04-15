@@ -4,7 +4,7 @@
     <id>Microsoft.ROS.MRTK.Foxy</id>
     <version>0.1.0</version>
     <title>Microsoft MRTK Extension for ROS</title>
-    <authors>Microsoft</authors>
+    <authors>Microsoft, Open Robotics, eProsima</authors>
     <owners>Microsoft</owners>
     <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/ms-iot/ros_msft_mrtk_native</projectUrl>

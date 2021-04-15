@@ -4,7 +4,7 @@
     <id>Microsoft.ROS.MRTK.Foxy.Unity</id>
     <version>0.1.0</version>
     <title>Microsoft MRTK Extension for ROS</title>
-    <authors>Microsoft</authors>
+    <authors>Microsoft, Open Robotics, eProsima</authors>
     <owners>Microsoft</owners>
     <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/ms-iot/ros_msft_mrtk_native</projectUrl>
@@ -17,7 +17,7 @@
   </metadata>
 
   <files>
-    <file target="build\native\Microsoft.ROS.MRTK.targets" src="Microsoft.ROS.MRTK.targets" />
+    <file target="build\native\Microsoft.ROS.MRTK.unity.targets" src="Microsoft.ROS.MRTK.targets" />
     <file target="Plugins\" src="c:\opt\vcpkg\installed\x64-windows\bin\*.dll" />
     <file target="Plugins\" src="c:\opt\vcpkg\installed\x64-windows\bin\*.pdb" />
     <file target="Plugins\" src="..\target\unity\bin\*.dll" />

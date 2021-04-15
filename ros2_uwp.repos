@@ -37,11 +37,11 @@ repositories:
     version: foxy
   ros2/libyaml_vendor:
     type: git
-    url: https://github.com/ros2/libyaml_vendor.git
+    url: https://github.com/ms-iot/libyaml_vendor.git
     version: foxy
   ros2/rcl:
     type: git
-    url: https://github.com/ros2/rcl.git
+    url: https://github.com/ms-iot/rcl.git
     version: foxy
   ros2/rcl_interfaces:
     type: git

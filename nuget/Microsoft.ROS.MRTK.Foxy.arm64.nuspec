@@ -4,7 +4,7 @@
     <id>Microsoft.ROS.MRTK.Foxy.arm64</id>
     <version>0.1.0</version>
     <title>Microsoft MRTK Extension for ROS</title>
-    <authors>Microsoft</authors>
+    <authors>Microsoft, Open Robotics, eProsima</authors>
     <owners>Microsoft</owners>
     <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/ms-iot/ros_msft_mrtk_native</projectUrl>
@@ -23,6 +23,8 @@
     <file target="lib\native\win10-arm64" src="..\target\arm64\bin\*.pdb" />
     <file target="lib\native\win10-arm64" src="..\target\arm64\lib\**\*.*"/>
     <file target="include" src="..\target\arm64\include\**\*.*" />
+    <file target="lib\native\win10-arm64" src="C:\opt\vcpkg\installed\arm64-uwp\bin\*.dll" />
+
     <!--
         <file target="build\native\Microsoft.ROS.MRTK.targets" src="Microsoft.ROS.MRTK.targets" />
     <file target="lib\netstandard2.0" src="..\target\arm64\Lib\builtin_interfaces\dotnet\builtin_interfaces_assemblies.*" />
@@ -50,7 +52,6 @@
     <file target="lib\netstandard2.0" src="..\target\arm64\lib\visualization_msgs\dotnet\visualization_msgs_assemblies.*" />
 
     <file target="runtimes\win10-arm64\native" src="..\target\arm64\bin\*.dll" />
-    <file target="runtimes\win10-arm64\native" src="..\target\arm64\bin\*.meta" />
     <file target="runtimes\win10-arm64\native" src="C:\opt\vcpkg\installed\arm64-uwp\bin\*.dll" />
     <file target="runtimes\win10-arm64\native" src="C:\opt\vcpkg\installed\arm64-uwp\bin\*.meta" />
     -->

@@ -4,7 +4,7 @@
     <id>Microsoft.ROS.MRTK.Foxy.x86</id>
     <version>0.1.0</version>
     <title>Microsoft MRTK Extension for ROS</title>
-    <authors>Microsoft</authors>
+    <authors>Microsoft, Open Robotics, eProsima</authors>
     <owners>Microsoft</owners>
     <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/ms-iot/ros_msft_mrtk_native</projectUrl>
@@ -23,6 +23,7 @@
     <file target="lib\native\win10-x86" src="..\target\x86\bin\*.pdb" />
     <file target="lib\native\win10-x86" src="..\target\x86\lib\**\*.*"/>
     <file target="include" src="..\target\x86\include\**\*.*" />
+    <file target="lib\native\win10-x86" src="C:\opt\vcpkg\installed\x86-uwp\bin\*.dll" />
   </files>
 
 </package>

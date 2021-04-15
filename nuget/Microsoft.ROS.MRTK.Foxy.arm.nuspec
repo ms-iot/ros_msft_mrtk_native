@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>Microsoft.ROS.MRTK.Foxy.arm64</id>
+    <id>Microsoft.ROS.MRTK.Foxy.arm</id>
     <version>0.1.0</version>
     <title>Microsoft MRTK Extension for ROS</title>
-    <authors>Microsoft</authors>
+    <authors>Microsoft, Open Robotics, eProsima</authors>
     <owners>Microsoft</owners>
     <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/ms-iot/ros_msft_mrtk_native</projectUrl>
@@ -22,7 +22,8 @@
     <file target="lib\native\win10-arm" src="..\target\arm\bin\*.dll" />
     <file target="lib\native\win10-arm" src="..\target\arm\bin\*.pdb" />
     <file target="lib\native\win10-arm" src="..\target\arm\lib\**\*.*"/>
-    <file target="include" src="..\target\arm\include\**\*.*" />
+    <file target="include" src="..\target\arm\include\**\*.h" />
+    <file target="lib\native\win10-arm" src="C:\opt\vcpkg\installed\arm-uwp\bin\*.dll" />
   </files>
 
 </package>

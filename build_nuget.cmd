@@ -13,7 +13,7 @@ echo "VSInstallDir is %VSINSTALLDIR%"
 
 call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
 
-set NUSPEC="Microsoft.ROS.MRTK.Foxy.nuspec"
+set NUSPEC="Microsoft.ROS.MRTK.Foxy"
 
 pushd nuget
 
@@ -23,16 +23,16 @@ pushd nuget
  if /I "%~1" == "/Help" goto USAGE
  if /I "%~1" == "/clean" set CLEAN=1
  if /I "%~1" == "/nopack" set NOPACK=1
- if /I "%~1" == "/arm" set NUSPEC="Microsoft.ROS.MRTK.Foxy.arm.nuspec"
- if /I "%~1" == "/x86" set NUSPEC="Microsoft.ROS.MRTK.Foxy.x86.nuspec"
- if /I "%~1" == "/x64" set NUSPEC="Microsoft.ROS.MRTK.Foxy.x64.nuspec"
- if /I "%~1" == "/arm64" set NUSPEC="Microsoft.ROS.MRTK.Foxy.arm64.nuspec"
- if /I "%~1" == "/unity" set NUSPEC="Microsoft.ROS.MRTK.Foxy.unity.nuspec"
+ if /I "%~1" == "/arm" set NUSPEC="Microsoft.ROS.MRTK.Foxy.arm"
+ if /I "%~1" == "/x86" set NUSPEC="Microsoft.ROS.MRTK.Foxy.x86"
+ if /I "%~1" == "/x64" set NUSPEC="Microsoft.ROS.MRTK.Foxy.x64"
+ if /I "%~1" == "/arm64" set NUSPEC="Microsoft.ROS.MRTK.Foxy.arm64"
+ if /I "%~1" == "/unity" set NUSPEC="Microsoft.ROS.MRTK.Foxy.unity"
  shift
 if not (%1)==() goto GETOPTS
 
 echo Cleaning outputs
-del Microsoft.ROS.MRTK*.nupkg 2> NUL
+del %NUSPEC%.nupkg 2> NUL
 
 :: if a clean was requested, exit here
 if "%CLEAN%"=="1" goto end
@@ -47,7 +47,7 @@ IF ERRORLEVEL 1 (
     goto err
 )
 
-nuget pack %NUSPEC% -NoPackageAnalysis || goto err
+nuget pack %NUSPEC%.nuspec -NoPackageAnalysis || goto err
 
 :end
 popd
