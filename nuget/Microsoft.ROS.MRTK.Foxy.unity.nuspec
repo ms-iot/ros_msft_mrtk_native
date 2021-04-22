@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>Microsoft.ROS.MRTK.Eloquent.Unity</id>
+    <id>Microsoft.ROS.MRTK.Foxy.Unity</id>
     <version>0.1.0</version>
     <title>Microsoft MRTK Extension for ROS</title>
-    <authors>Microsoft</authors>
+    <authors>Microsoft, Open Robotics, eProsima</authors>
     <owners>Microsoft</owners>
-    <licenseUrl>http://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx</licenseUrl>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/ms-iot/ros_msft_mrtk_native</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Use the Mixed Reality Toolkit for Unity with ROS Robots</description>
@@ -17,13 +17,11 @@
   </metadata>
 
   <files>
-    <file target="build\native\Microsoft.ROS.MRTK.targets" src="Microsoft.ROS.MRTK.targets" />
+    <file target="build\native\Microsoft.ROS.MRTK.unity.targets" src="Microsoft.ROS.MRTK.targets" />
     <file target="Plugins\" src="c:\opt\vcpkg\installed\x64-windows\bin\*.dll" />
     <file target="Plugins\" src="c:\opt\vcpkg\installed\x64-windows\bin\*.pdb" />
     <file target="Plugins\" src="..\target\unity\bin\*.dll" />
     <file target="Plugins\" src="..\target\unity\bin\*.pdb" />
-    <file target="Plugins\" src="C:\opt\vcpkg\buildtrees\apriltag\x64-windows-rel\*.dll" />
-    <file target="Plugins\" src="C:\opt\vcpkg\buildtrees\apriltag\x64-windows-rel\*.pdb" />
     <file target="Plugins\" src="C:\opt\vcpkg\installed\x64-windows\bin\*.dll" />
     <file target="Plugins\" src="C:\opt\vcpkg\installed\x64-windows\bin\*.pdb" />
     <file target="Plugins\" src="..\target\unity\Lib\builtin_interfaces\dotnet\builtin_interfaces_assemblies.*" />

@@ -48,8 +48,9 @@ if "%BUILD%"=="arm64" goto :build_arm64
 setlocal
 set ROS2_ARCH=x64
 call tools\unity\local_setup.bat
+call target\unity\local_setup.bat
 
-pushd target
+pushd ros2dotnet
 set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/x64-windows;%CMAKE_PREFIX_PATH_ORIG%
 set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x64-windows\bin;%PATH_ORIG%
 call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
@@ -59,7 +60,7 @@ if "%clean%"=="true" (
     if exist unity rd /s /q unity
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\unity_build --install-base .\unity --packages-ignore tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog rclcpp_components ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\unity_build --install-base .\unity --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
 if "%ERRORLEVEL%" NEQ "0" goto :eof 
 endlocal
 popd
@@ -69,8 +70,9 @@ if "%BUILD%"=="unity" goto :eof
 setlocal
 set ROS2_ARCH=x64
 call tools\x64\local_setup.bat
+call target\x64\local_setup.bat
 
-pushd target
+pushd ros2dotnet
 set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/x64-uwp;%CMAKE_PREFIX_PATH_ORIG%
 set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x64-uwp\bin;%PATH_ORIG%
 call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
@@ -80,7 +82,7 @@ if "%clean%"=="true" (
     if exist x64 rd /s /q x64
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x64_build --install-base .\x64 --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x64_build --install-base .\x64 --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
 endlocal
 popd
@@ -90,18 +92,19 @@ if "%BUILD%"=="x64" goto :eof
 setlocal
 set ROS2_ARCH=arm64
 call tools\arm64\local_setup.bat
+call target\arm64\local_setup.bat
 
-pushd target
+pushd ros2dotnet
 set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/arm64-uwp;%CMAKE_PREFIX_PATH_ORIG%
 set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\arm64-uwp\bin;%PATH_ORIG%
 call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvarsamd64_arm64.bat"
 
 if "%clean%"=="true" (
     if exist arm64_build rd /s /q arm64_build
-    if exist install rd /s /q install
+    if exist arm64 rd /s /q arm64
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm64_build --install-base .\arm64 --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm64 -DDOTNET_CORE_ARCH=arm64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm64_build --install-base .\arm64 --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm64 -DDOTNET_CORE_ARCH=arm64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
 endlocal
 popd
@@ -113,18 +116,19 @@ if "%BUILD%"=="arm64" goto :eof
 setlocal
 set ROS2_ARCH=arm
 call tools\arm\local_setup.bat
+call target\arm\local_setup.bat
 
-pushd target
+pushd ros2dotnet
 set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/arm-uwp;%CMAKE_PREFIX_PATH_ORIG%
 set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\arm-uwp\bin;%PATH_ORIG%
 call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvarsamd64_arm.bat"
 
 if "%clean%"=="true" (
-    if exist arm64_build rd /s /q arm64_build
-    if exist install rd /s /q install
+    if exist arm_build rd /s /q arm_build
+    if exist arm rd /s /q arm
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm_build --install-base .\arm --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm -DDOTNET_CORE_ARCH=arm -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm_build --install-base .\arm--cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm -DDOTNET_CORE_ARCH=arm -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
 endlocal
 popd
@@ -136,8 +140,9 @@ setlocal
 : x86 is called Win32 in cmakelandia
 set ROS2_ARCH=Win32
 call tools\x86\local_setup.bat
+call target\x86\local_setup.bat
 
-pushd target
+pushd ros2dotnet
 set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/x86-uwp;%CMAKE_PREFIX_PATH_ORIG%
 set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x86-uwp\bin;%PATH_ORIG%
 call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvarsamd64_x86.bat"

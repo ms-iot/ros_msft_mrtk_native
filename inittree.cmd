@@ -16,6 +16,20 @@ call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
 
 if NOT EXIST "c:\opt\vcpkg\vcpkg.exe" goto :novcpkg
 
+if "%VSINSTALLDIR%" == "" (
+    if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community" (
+        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\"
+    )
+    if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise" (
+        set "VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\"
+    )
+)    
+echo "VSInstallDir is %VSINSTALLDIR%"
+call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
+
+
+if NOT EXIST "c:\opt\vcpkg\vcpkg.exe" goto :novcpkg
+
 
 : Call to initialize the isolated ROS2 build system
 mkdir c:\opt\chocolatey
@@ -34,18 +48,29 @@ call pip install lark-parser
 
 mkdir tools\src
 mkdir target\src
+mkdir ros2dotnet\src
 
-cd tools
+pushd tools
 vcs import src < ..\build_tools.repos
+popd
 
-cd ..\target
+pushd target
 vcs import src < ..\ros2_uwp.repos
 xcopy /y src\ros2\orocos_kinematics_dynamics\orocos_kdl\config\FindEigen3.cmake src\ros2\eigen3_cmake_module\cmake\Modules
-cd ..
+popd
 
+pushd ros2dotnet
+vcs import src < ..\ros2_dotnet.repos
+popd
 
-cd tools
+pushd tools
 call colcon build --merge-install --cmake-args -DBUILD_TESTING=OFF
-cd ..
+popd
+
+goto :eof
+
+:novcpkg
+echo "VCPkg not found at c:\opt\vcpkg\vcpkg.exe"
+dir c:\opt
 
 exit /1
