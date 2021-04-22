@@ -20,9 +20,7 @@ using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 using std::placeholders::_1;
-/*
 MinimalSubscriber::MinimalSubscriber()
         : Node("minimal_subscriber")
     {
@@ -35,18 +33,14 @@ void MinimalSubscriber ::topic_callback(const std_msgs::msg::String::SharedPtr m
     OutputDebugStringA(msg->data.c_str());
     OutputDebugStringA("\n");
 }
-*/
 
 MainPage::MainPage()
 {
 	InitializeComponent();
-    //rclcpp::init(0, nullptr); 
-    LoadPackagedLibrary(L"rcl.dll", 0);
-    /*
+    rclcpp::init(0, nullptr);
     _minSubscriber = std::make_shared<MinimalSubscriber>();
     auto node_spinner = concurrency::create_task([this]
         {
             rclcpp::spin(_minSubscriber);
         });
-        */
 }

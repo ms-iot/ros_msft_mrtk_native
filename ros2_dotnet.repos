@@ -1,13 +1,13 @@
 repositories:
-  ros2_dotnet/ros2_dotnet:
+  ros2_dotnet:
     type: git
-    url: https://github.com/ooeygui/ros2_dotnet
+    url: https://github.com/ms-iot/ros2_dotnet
     version: master
-  ros2_dotnet/dotnet_cmake_module:
+  dotnet_cmake_module:
     type: git
     url: https://github.com/ros2-dotnet/dotnet_cmake_module.git
     version: master
-  ros2_dotnet/ament_cmake_export_assemblies:
+  ament_cmake_export_assemblies:
     type: git
     url: https://github.com/esteve/ament_cmake_export_assemblies.git
     version: master

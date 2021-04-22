@@ -25,6 +25,7 @@ popd
 
 : Build tooling
 vcpkg install protobuf:x86-windows
+vcpkg install foonathan-memory:x64-windows
 
 if "%BUILD%"=="x86" goto :build_x86
 if "%BUILD%"=="x64" goto :build_x64

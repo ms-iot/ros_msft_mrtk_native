@@ -48,18 +48,24 @@ call pip install lark-parser
 
 mkdir tools\src
 mkdir target\src
+mkdir ros2dotnet\src
 
-cd tools
+pushd tools
 vcs import src < ..\build_tools.repos
+popd
 
-cd ..\target
+pushd target
 vcs import src < ..\ros2_uwp.repos
 xcopy /y src\ros2\orocos_kinematics_dynamics\orocos_kdl\config\FindEigen3.cmake src\ros2\eigen3_cmake_module\cmake\Modules
-cd ..
+popd
 
-cd tools
+pushd ros2dotnet
+vcs import src < ..\ros2_dotnet.repos
+popd
+
+pushd tools
 call colcon build --merge-install --cmake-args -DBUILD_TESTING=OFF
-cd ..
+popd
 
 goto :eof
 
