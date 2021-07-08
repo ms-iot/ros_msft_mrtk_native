@@ -55,7 +55,7 @@ set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x64-windows\bin;%PATH_ORIG%
 call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
 
 if "%clean%"=="true" (
-    if exist unity_build rd /s /q build
+    if exist unity_build rd /s /q unity_build
     if exist unity rd /s /q unity
 )
 

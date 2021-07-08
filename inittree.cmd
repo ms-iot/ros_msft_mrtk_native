@@ -59,10 +59,6 @@ vcs import src < ..\ros2_uwp.repos
 xcopy /y src\ros2\orocos_kinematics_dynamics\orocos_kdl\config\FindEigen3.cmake src\ros2\eigen3_cmake_module\cmake\Modules
 popd
 
-pushd ros2dotnet
-vcs import src < ..\ros2_dotnet.repos
-popd
-
 pushd tools
 call colcon build --merge-install --cmake-args -DBUILD_TESTING=OFF
 popd
