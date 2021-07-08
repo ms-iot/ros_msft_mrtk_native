@@ -24,7 +24,6 @@ set DEBUG_CMD=
  if /I "%~1" == "/arm" set BUILD=arm
  if /I "%~1" == "/unity" set BUILD=unity
  if /I "%~1" == "/clean" set clean=true
- if /I "%~1" == "/debug" set DEBUG_CMD=-DCMAKE_BUILD_TYPE=RelWithDebInfo
  shift
 if not (%1)==() goto GETOPTS
 
@@ -46,63 +45,81 @@ if "%BUILD%"=="arm" goto :build_arm
 if "%BUILD%"=="arm64" goto :build_arm64
 
 :build_unity
+setlocal
 set ROS2_ARCH=x64
-if "%clean%"=="true" rd /s /q build
-if exist unity (ren unity install)
-if exist unity_build (ren unity_build build)
-call colcon build --event-handlers console_cohesion+ --merge-install --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
+if "%clean%"=="true" (
+    if exist unity_build rd /s /q build
+    if exist unity rd /s /q unity
+)
+
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\unity_build --install-base .\unity --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
+
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-if exist unity (rd /y /s unity)
-if exist unity_build (rd /y /s unity_build)
-ren install unity
-ren install unity_build
+endlocal
 popd
 if "%BUILD%"=="unity" goto :eof
 
 :build_x64
+setlocal
 set ROS2_ARCH=x64
-if "%clean%"=="true" rd /s /q build
-if exist x64 (ren x64 install)
-if exist x64_build (ren x64_build build)
-call colcon build --event-handlers console_cohesion+ --merge-install --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
+if "%clean%"=="true" (
+    if exist x64_build rd /s /q x64_build
+    if exist x64 rd /s /q x64
+)
+
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x64_build --install-base .\x64 --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
+
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-if exist x64 (rd /y /s x64)
-if exist x64_build (rd /y /s x64_build)
-ren install x64
-ren install x64_build
 popd
 if "%BUILD%"=="x64" goto :eof
 
 
 :build_arm64
+setlocal
 set ROS2_ARCH=arm64
-if "%clean%"=="true" rd /s /q build
-if exist arm64 (ren arm64 install)
-if exist arm64_build (ren arm64_build build)
-call colcon build --event-handlers console_cohesion+ --merge-install --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm64 -DDOTNET_CORE_ARCH=arm64 -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
+if "%clean%"=="true" (
+    if exist arm64_build rd /s /q arm64_build
+    if exist install rd /s /q install
+)
+
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm64_build --install-base .\arm64 --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm64 -DDOTNET_CORE_ARCH=arm64 -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
+
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-if exist arm64 (rd /y /s arm64)
-if exist arm64_build (rd /y /s arm64_build)
-ren install arm64
-ren build arm64_build
+endlocal
 popd
 if "%BUILD%"=="build_arm64" goto :eof
 
 :build_arm
+setlocal
 set ROS2_ARCH=arm
-if "%clean%"=="true" rd /s /q build
-if exist arm (ren arm install)
-if exist arm_build (ren arm_build build)
-call colcon build --event-handlers console_cohesion+ --merge-install --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm -DDOTNET_CORE_ARCH=arm -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
-if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-if exist arm (rd /y /s arm)
-if exist arm_build (rd /y /s arm_build)
-ren install arm
-ren build arm_build
-popd
-if "%BUILD%"=="build_arm64" goto :eof
+if "%clean%"=="true" (
+    if exist arm_build rd /s /q arm_build
+    if exist arm rd /s /q arm
+)
 
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm_build --install-base .\arm --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm -DDOTNET_CORE_ARCH=arm -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
+
+if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
+endlocal
 popd
+if "%BUILD%"=="build_arm" goto :eof
+
+: build x86
+:build_x86
+setlocal
+: x86 is called Win32 in cmakelandia
+set ROS2_ARCH=Win32
+
+if "%clean%"=="true" (
+    if exist x86_build rd /s /q x86_build
+    if exist x86 rd /s /q x86
+)
+
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x86_build --install-base .\x86 --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x86 -DDOTNET_CORE_ARCH=x86 -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
+if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
+endlocal
+popd
+if "%BUILD%"=="x86" goto :eof
 
 goto :eof
 
@@ -111,6 +128,6 @@ popd
 goto :eof
 
 :USAGE 
-    echo "build [x86|arm64]"
+    echo "build [/x86 | /arm64 | /unity | /arm]"
     goto :eof
 
