@@ -23,7 +23,6 @@ $filespecs = @(
     "..\target\@@sourcearch@@\lib\visualization_msgs\dotnet\visualization_msgs_assemblies.*"
 
     "..\target\@@arch@@\bin\*.dll"
-    "C:\opt\vcpkg\buildtrees\apriltag\@@arch@@-@@platform@@-rel\Release\*.dll"
     "C:\opt\vcpkg\installed\@@arch@@-@@platform@@\bin\*.dll"
 )
 
