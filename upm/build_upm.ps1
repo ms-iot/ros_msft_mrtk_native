@@ -22,7 +22,7 @@ $filespecs = @(
     "..\target\@@sourcearch@@\lib\unique_identifier_msgs\dotnet\unique_identifier_msgs_assemblies.*"
     "..\target\@@sourcearch@@\lib\visualization_msgs\dotnet\visualization_msgs_assemblies.*"
 
-    "..\target\@@arch@@\bin\*.dll"
+    "..\target\@@sourcearch@@\bin\*.dll"
     "C:\opt\vcpkg\installed\@@arch@@-@@platform@@\bin\*.dll"
 )
 
@@ -101,7 +101,7 @@ function populate
     populateArchAndPlat -arch "x64" -platform "Windows" -sourceArch "Unity" -templateName 'x86_64_meta.txt'
     #populateArchAndPlat -arch "x64" -platform "uwp" -sourceArch "x64" -templateName 'wsa_x64_meta.txt'
     #populateArchAndPlat -arch "x86" -platform "uwp" -sourceArch "x86" -templateName 'wsa_x86_meta.txt'
-    populateArchAndPlat -arch "arm64" -platform "uwp"  -sourceArch "arm64"  -templateName 'wsa_arm64_meta.txt'
+    #populateArchAndPlat -arch "arm64" -platform "uwp"  -sourceArch "arm64"  -templateName 'wsa_arm64_meta.txt'
 }
 
 function GenerateUnityMeta 

@@ -90,7 +90,7 @@ repositories:
   ros2/tinydir_vendor:
     type: git
     url: https://github.com/ros2/tinydir_vendor.git
-    version: foxy
+    version: eloquent
   ros2/unique_identifier_msgs:
     type: git
     url: https://github.com/ros2/unique_identifier_msgs.git
@@ -150,7 +150,7 @@ repositories:
   ros2_dotnet/ros2_dotnet:
     type: git
     url: https://github.com/ms-iot/ros2_dotnet
-    version: foxy
+    version: master
   ros2_dotnet/dotnet_cmake_module:
     type: git
     url: https://github.com/ros2-dotnet/dotnet_cmake_module.git
