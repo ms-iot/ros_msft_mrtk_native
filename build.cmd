@@ -34,7 +34,6 @@ set PYTHONHOME=C:\opt\python37amd64\
  if /I "%~1" == "/arm" set BUILD=arm
  if /I "%~1" == "/unity" set BUILD=unity
  if /I "%~1" == "/clean" set clean=true
- if /I "%~1" == "/debug" set DEBUG_CMD=-DCMAKE_BUILD_TYPE=RelWithDebInfo
  shift
 if not (%1)==() goto GETOPTS
 
@@ -59,11 +58,9 @@ if "%clean%"=="true" (
     if exist unity rd /s /q unity
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\unity_build --install-base .\unity --packages-ignore tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog rclcpp_components ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
-if "%ERRORLEVEL%" NEQ "0" goto :eof 
-endlocal
-popd
-if "%BUILD%"=="unity" goto :eof
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\unity_build --install-base .\unity --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
+if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
+if "%BUILD%"=="unity" goto :build_succeeded
 
 :build_x64
 setlocal
@@ -80,11 +77,9 @@ if "%clean%"=="true" (
     if exist x64 rd /s /q x64
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x64_build --install-base .\x64 --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev 
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x64_build --install-base .\x64 --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-endlocal
-popd
-if "%BUILD%"=="x64" goto :eof
+if "%BUILD%"=="x64" goto :build_succeeded
 
 :build_arm64
 setlocal
@@ -101,11 +96,9 @@ if "%clean%"=="true" (
     if exist install rd /s /q install
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm64_build --install-base .\arm64 --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm64 -DDOTNET_CORE_ARCH=arm64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm64_build --install-base .\arm64 --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm64 -DDOTNET_CORE_ARCH=arm64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-endlocal
-popd
-if "%BUILD%"=="arm64" goto :eof
+if "%BUILD%"=="arm64" goto :build_succeeded
 
 
 
@@ -124,11 +117,9 @@ if "%clean%"=="true" (
     if exist install rd /s /q install
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm_build --install-base .\arm --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm -DDOTNET_CORE_ARCH=arm -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm_build --install-base .\arm --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm -DDOTNET_CORE_ARCH=arm -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-endlocal
-popd
-if "%BUILD%"=="arm" goto :eof
+if "%BUILD%"=="arm" goto :build_succeeded
 
 : build x86
 :build_x86
@@ -147,13 +138,11 @@ if "%clean%"=="true" (
     if exist x86 rd /s /q x86
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x86_build --install-base .\x86 --packages-ignore tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH% -DCSHARP_PLATFORM=x86 -DDOTNET_CORE_ARCH=x86 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli %DEBUG_CMD% -Wno-dev
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x86_build --install-base .\x86 --packages-ignore tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH% -DCSHARP_PLATFORM=x86 -DDOTNET_CORE_ARCH=x86 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-endlocal
-popd
-if "%BUILD%"=="x86" goto :eof
+if "%BUILD%"=="x86" goto :build_succeeded
 
-goto :eof
+goto :build_succeeded
 
 :build_fail
 popd
@@ -162,3 +151,7 @@ goto :eof
 :USAGE 
     echo "build [/x64|/x86|/arm64|/arm] [/clean]"
     goto :eof
+
+:build_succeeded
+endlocal
+popd
