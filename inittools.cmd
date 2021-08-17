@@ -27,8 +27,6 @@ set DEBUG_CMD=
  shift
 if not (%1)==() goto GETOPTS
 
-pushd tools
-
 : Call to build the isolated ROS2 build system
 set ChocolateyInstall=c:\opt\chocolatey
 
@@ -45,6 +43,7 @@ if "%BUILD%"=="arm" goto :build_arm
 if "%BUILD%"=="arm64" goto :build_arm64
 
 :build_unity
+pushd tools
 setlocal
 set ROS2_ARCH=x64
 if "%clean%"=="true" (
@@ -60,6 +59,7 @@ popd
 if "%BUILD%"=="unity" goto :eof
 
 :build_x64
+pushd tools
 setlocal
 set ROS2_ARCH=x64
 if "%clean%"=="true" (
@@ -75,11 +75,12 @@ if "%BUILD%"=="x64" goto :eof
 
 
 :build_arm64
+pushd tools
 setlocal
 set ROS2_ARCH=arm64
 if "%clean%"=="true" (
     if exist arm64_build rd /s /q arm64_build
-    if exist install rd /s /q install
+    if exist arm64 rd /s /q arm64
 )
 
 call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm64_build --install-base .\arm64 --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm64 -DDOTNET_CORE_ARCH=arm64 -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
@@ -87,9 +88,10 @@ call colcon build --event-handlers console_cohesion+ --merge-install --build-bas
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
 endlocal
 popd
-if "%BUILD%"=="build_arm64" goto :eof
+if "%BUILD%"=="arm64" goto :eof
 
 :build_arm
+pushd tools
 setlocal
 set ROS2_ARCH=arm
 if "%clean%"=="true" (
@@ -102,10 +104,11 @@ call colcon build --event-handlers console_cohesion+ --merge-install --build-bas
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
 endlocal
 popd
-if "%BUILD%"=="build_arm" goto :eof
+if "%BUILD%"=="arm" goto :eof
 
 : build x86
 :build_x86
+pushd tools
 setlocal
 : x86 is called Win32 in cmakelandia
 set ROS2_ARCH=Win32
@@ -124,6 +127,7 @@ if "%BUILD%"=="x86" goto :eof
 goto :eof
 
 :build_fail
+endlocal
 popd
 goto :eof
 
