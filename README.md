@@ -49,13 +49,12 @@ inittree.cmd
 ```
 
 ## Building the tools
-If you only intend to target one architecture, you can pass `/x86`, `/x64`, `/arm`, `/arm64`, `/unity`. Passing no argument will instruct the build scripts to generate binaries for all platforms. The `/unity` flag creates a build of ROS2 which works within the Unity Editor or Windows Desktop Mixed Reality Application.
+If you only intend to target one architecture, you can pass one of `/x86`, `/x64`, `/arm`, `/arm64`, `/unity`. Passing no argument will instruct the build scripts to generate binaries for all platforms. The `/unity` flag creates a build of ROS2 which works within the Unity Editor or Windows Desktop Mixed Reality Application.
 
  
 ``` cmd
 initvcpkg.cmd [/x86 | /x64 | /arm | /arm64 | /unity]
-inittools.cmd
-build_tools.cmd [/x86 | /x64 | /arm | /arm64 | /unity]
+inittools.cmd [/x86 | /x64 | /arm | /arm64 | /unity]
 ```
 
 ## Building ROS2 & ROS2.net
@@ -76,8 +75,6 @@ build_nuget.cmd [/x86 | /x64 | /arm | /arm64 | /unity]
 ``` cmd
 build_upm.cmd [/x86 | /x64 | /arm | /arm64 | /unity]
 ```
-
-
 
 # Contributing
 

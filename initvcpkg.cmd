@@ -17,12 +17,14 @@ set PATH_ORIG=%PATH%
 set PATH=c:\opt\vcpkg;c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;C:\opt\python37amd64\DLLs;%PATH%
 set VCPKG_ROOT=c:\opt\vcpkg
 
+if exist "%VCPKG_ROOT%" goto :build_tools
 mkdir c:\opt
 pushd c:\opt
 git clone https://github.com/ooeygui/vcpkg
 call bootstrap-vcpkg.bat
 popd
 
+:build_tools
 : Build tooling
 vcpkg install protobuf:x86-windows
 vcpkg install foonathan-memory:x64-windows
