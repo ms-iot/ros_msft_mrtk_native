@@ -153,7 +153,7 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.11</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.ROS.MRTK.Foxy.arm64">
+    <PackageReference Include="Microsoft.ROS.MRTK.Foxy.x64">
       <Version>0.1.0</Version>
     </PackageReference>
   </ItemGroup>
