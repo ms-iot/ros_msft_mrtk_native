@@ -31,6 +31,8 @@ namespace uwp_cpp
 	{
 		std::shared_ptr<MinimalSubscriber> _minSubscriber;
 
+		Concurrency::task<void> _task;
+
 	public:
 		MainPage();
 

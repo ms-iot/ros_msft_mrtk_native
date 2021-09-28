@@ -67,7 +67,7 @@ if "%clean%"=="true" (
     if exist x64 rd /s /q x64
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x64_build --install-base .\x64 --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x64_build --install-base .\x64 --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
 
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
 popd
@@ -83,7 +83,7 @@ if "%clean%"=="true" (
     if exist arm64 rd /s /q arm64
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm64_build --install-base .\arm64 --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm64 -DDOTNET_CORE_ARCH=arm64 -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm64_build --install-base .\arm64 --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm64 -DDOTNET_CORE_ARCH=arm64 -DCMAKE_SYSTEM_NAME=WindowsStore  -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
 
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
 endlocal
@@ -99,7 +99,7 @@ if "%clean%"=="true" (
     if exist arm rd /s /q arm
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm_build --install-base .\arm --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm -DDOTNET_CORE_ARCH=arm -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm_build --install-base .\arm --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm -DDOTNET_CORE_ARCH=arm -DCMAKE_SYSTEM_NAME=WindowsStore  -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
 
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
 endlocal
@@ -118,7 +118,7 @@ if "%clean%"=="true" (
     if exist x86 rd /s /q x86
 )
 
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x86_build --install-base .\x86 --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x86 -DDOTNET_CORE_ARCH=x86 -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x86_build --install-base .\x86 --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x86 -DDOTNET_CORE_ARCH=x86 -DCMAKE_SYSTEM_NAME=WindowsStore  -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
 endlocal
 popd

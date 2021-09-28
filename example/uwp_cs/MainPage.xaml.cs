@@ -33,12 +33,14 @@ namespace uwp_cs
             {
                 RCLdotnet.Init();
 
+                Console.WriteLine($"ROS RMW: [{RCLdotnet.GetRMWIdentifier()}]");
+
                 INode node = RCLdotnet.CreateNode("listener");
 
                 ISubscription<std_msgs.msg.String> chatter_sub = node.CreateSubscription<std_msgs.msg.String>(
                   "/chatter", msg =>
                   {
-                      Console.WriteLine("I heard: [" + msg.Data + "]");
+                      Console.WriteLine($"I heard: [{msg.Data}]");
                   });
 
                 RCLdotnet.Spin(node);

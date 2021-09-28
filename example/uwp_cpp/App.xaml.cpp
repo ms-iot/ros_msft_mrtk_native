@@ -88,6 +88,23 @@ void App::OnLaunched(Windows::ApplicationModel::Activation::LaunchActivatedEvent
             Window::Current->Activate();
         }
     }
+
+
+    try
+    {
+        rcutils_logging_set_logger_level("", 0);
+
+        rclcpp::init(0, nullptr);
+        auto minSubscriber = std::make_shared<MinimalSubscriber>();
+        rclcpp::spin(minSubscriber);
+    }
+    catch (...)
+    {
+        rcl_error_string_t prev_error_string = rcl_get_error_string();
+        OutputDebugStringA(prev_error_string.str);
+        OutputDebugStringA("\n");
+
+    }
 }
 
 /// <summary>
