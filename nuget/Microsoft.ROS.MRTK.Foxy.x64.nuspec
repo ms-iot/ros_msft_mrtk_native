@@ -19,6 +19,7 @@
   <files>
     <file target="build\Microsoft.ROS.MRTK.Foxy.x64.targets" src="Microsoft.ROS.MRTK.targets" />
 
+    <file target="runtimes\win10-x64\native" src="..\tools\x64\bin\*.dll" />
     <file target="runtimes\win10-x64\native" src="..\target\x64\bin\*.dll" />
     <file target="runtimes\win10-x64\native" src="..\target\x64\bin\*.pdb" />
     <file target="runtimes\win10-x64\native" src="..\target\x64\lib\**\*.lib"/>

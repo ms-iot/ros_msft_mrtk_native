@@ -23,8 +23,15 @@ $filespecs = @(
     "..\target\@@sourcearch@@\lib\visualization_msgs\dotnet\visualization_msgs_assemblies.*"
 
     "..\target\@@sourcearch@@\bin\*.dll"
+    "..\tools\@@sourcearch@@\bin\*.dll"
     "C:\opt\vcpkg\installed\@@arch@@-@@platform@@\bin\*.dll"
+    "%VCToolsRedistDir%\onecore\@@arch@@\Microsoft.VC142.CRT\vcruntime140.dll"
+    "%VCToolsRedistDir%\onecore\@@arch@@\Microsoft.VC142.CRT\vcruntime140_1.dll"
+    "%VCToolsRedistDir%\onecore\@@arch@@\Microsoft.VC142.CRT\msvcp140.dll"
+    "%VCToolsRedistDir%\onecore\@@arch@@\Microsoft.VC142.CRT\msvcp140.dll"
 )
+
+
 
 function createMeta
 {
@@ -55,6 +62,8 @@ function populateArchAndPlat
         $platform
     )
 
+    $vcredist = [System.Environment]::GetEnvironmentVariable('VCToolsRedistDir')
+
     $template = Get-Content $templateName -Raw
     $templateFolder = Get-Content "folder_meta.txt" -Raw
 
@@ -76,6 +85,7 @@ function populateArchAndPlat
         $filespec = $filespec.Replace("@@sourcearch@@", $sourceArch)
         $filespec = $filespec.Replace("@@arch@@", $arch)
         $filespec = $filespec.Replace("@@platform@@", $platform)
+        $filespec = $filespec.Replace("%VCToolsRedistDir%", $vcredist)
 
         foreach ($extSpec in $extSpecs)
         {
@@ -101,7 +111,7 @@ function populate
     populateArchAndPlat -arch "x64" -platform "Windows" -sourceArch "Unity" -templateName 'x86_64_meta.txt'
     #populateArchAndPlat -arch "x64" -platform "uwp" -sourceArch "x64" -templateName 'wsa_x64_meta.txt'
     #populateArchAndPlat -arch "x86" -platform "uwp" -sourceArch "x86" -templateName 'wsa_x86_meta.txt'
-    #populateArchAndPlat -arch "arm64" -platform "uwp"  -sourceArch "arm64"  -templateName 'wsa_arm64_meta.txt'
+    populateArchAndPlat -arch "arm64" -platform "uwp"  -sourceArch "arm64"  -templateName 'wsa_arm64_meta.txt'
 }
 
 function GenerateUnityMeta 

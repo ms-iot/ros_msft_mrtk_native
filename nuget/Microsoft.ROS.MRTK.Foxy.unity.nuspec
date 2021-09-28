@@ -21,6 +21,7 @@
     <file target="Plugins\" src="c:\opt\vcpkg\installed\x64-windows\bin\*.dll" />
     <file target="Plugins\" src="c:\opt\vcpkg\installed\x64-windows\bin\*.pdb" />
     <file target="Plugins\" src="..\target\unity\bin\*.dll" />
+    <file target="Plugins\" src="..\tools\unity\bin\*.dll" />
     <file target="Plugins\" src="..\target\unity\bin\*.pdb" />
     <file target="Plugins\" src="C:\opt\vcpkg\installed\x64-windows\bin\*.dll" />
     <file target="Plugins\" src="C:\opt\vcpkg\installed\x64-windows\bin\*.pdb" />
