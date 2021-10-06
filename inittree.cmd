@@ -34,11 +34,11 @@ mkdir tools\src
 mkdir target\src
 
 pushd tools
-vcs import src < ..\build_tools.repos
+C:\opt\python37amd64\Scripts\vcs.exe import src < ..\build_tools.repos
 popd
 
 pushd target
-vcs import src < ..\ros2_uwp.repos
+C:\opt\python37amd64\Scripts\vcs.exe import src < ..\ros2_uwp.repos
 xcopy /y src\ros2\orocos_kinematics_dynamics\orocos_kdl\config\FindEigen3.cmake src\ros2\eigen3_cmake_module\cmake\Modules
 popd
 
