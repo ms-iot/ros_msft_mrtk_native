@@ -1,4 +1,4 @@
-@echo off
+: @echo off
 setlocal enableextensions disabledelayedexpansion
 
 if NOT EXIST "c:\opt\vcpkg\vcpkg.exe" goto :novcpkg
@@ -31,6 +31,8 @@ set VCPKG_ROOT=c:\opt\vcpkg
 
 call pip install vcstool
 call pip install lark-parser
+
+dir C:\opt\python37amd64\Scripts\
 
 mkdir tools\src
 mkdir target\src
