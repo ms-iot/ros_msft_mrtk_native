@@ -14,6 +14,8 @@ if "%VSINSTALLDIR%" == "" (
 echo "VSInstallDir is %VSINSTALLDIR%"
 call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
 
+set VisualStudioVersion=16.0
+
 : Call to initialize the isolated ROS2 build system
 mkdir c:\opt\chocolatey
 set PYTHONHOME=C:\opt\python37amd64\
