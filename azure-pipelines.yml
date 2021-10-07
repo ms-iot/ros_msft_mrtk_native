@@ -31,6 +31,8 @@ jobs:
       call inittree.cmd
       call inittools.cmd /unity
       pushd src
+      : BUGBUG need to build twice due to the dotnet generator
+      build.cmd /unity
       build.cmd /unity
       popd
     displayName: Build ROS2 Components
