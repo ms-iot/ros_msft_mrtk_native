@@ -10,6 +10,7 @@ if "%VSINSTALLDIR%" == "" (
     )
 )    
 echo "VSInstallDir is %VSINSTALLDIR%"
+call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
 
 set clean=false
 set DEBUG_CMD=
