@@ -36,6 +36,7 @@ jobs:
       build.cmd /unity
       popd
     displayName: Build ROS2 Components
+    continueOnError: true
     workingDirectory: '$(Build.StagingDirectory)\_'
   - task: PublishBuildArtifacts@1
     inputs:
