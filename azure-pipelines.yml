@@ -30,13 +30,24 @@ jobs:
   - script: |
       call inittree.cmd
       call inittools.cmd /unity
+    displayName: Init Tree
+    continueOnError: true
+    workingDirectory: '$(Build.StagingDirectory)\_'
+  - script: |
       pushd src
       : BUGBUG need to build twice due to the dotnet generator
       build.cmd /unity
+      popd
+    displayName: Build ROS2 Components Attempt 1
+    continueOnError: true
+    workingDirectory: '$(Build.StagingDirectory)\_'
+  - script: |
+      pushd src
+      : BUGBUG need to build twice due to the dotnet generator
       build.cmd /unity
       popd
-    displayName: Build ROS2 Components
-    continueOnError: true
+    displayName: Build ROS2 Components Attempt 2
+    continueOnError: false
     workingDirectory: '$(Build.StagingDirectory)\_'
   - task: PublishBuildArtifacts@1
     inputs:
