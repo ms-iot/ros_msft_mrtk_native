@@ -9,7 +9,7 @@ repositories:
     version: foxy-uwp
   eProsima/foonathan_memory_vendor:
     type: git
-    url: https://github.com/eProsima/foonathan_memory_vendor.git
+    url: https://github.com/ms-iot/foonathan_memory_vendor.git
     version: v1.0.0
   micro-ROS/ros_tracing/ros2_tracing:
     type: git
