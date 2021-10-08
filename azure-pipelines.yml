@@ -75,7 +75,7 @@ jobs:
   - task: PublishBuildArtifacts@1
     displayName: 'NuGet publish arm64'
     inputs:
-      pathtoPublish: $(Build.ArtifactStagingDirectory)/nuget-arm64
+      pathtoPublish: $(Build.ArtifactStagingDirectory)/nuget
       artifactName: 'ros2dotnet-nuget'
   - task: PublishBuildArtifacts@1
     displayName: 'NuGet publish x64'
