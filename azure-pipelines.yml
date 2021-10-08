@@ -62,16 +62,16 @@ jobs:
     displayName: 'NuGet pack ARM64'
     inputs:
       command: pack
-      basePath: $(Build.StagingDirectory)\_\nuget-arm64
+      basePath: $(Build.StagingDirectory)\_\nuget
       packagesToPack: $(Build.StagingDirectory)\_\nuget\Microsoft.ROS.MRTK.Foxy.arm64.nuspec
-      packDestination: '$(Build.ArtifactStagingDirectory)/nuget-arm64'
+      packDestination: '$(Build.ArtifactStagingDirectory)/nuget'
   - task: NuGetCommand@2
     displayName: 'NuGet pack x64'
     inputs:
       command: pack
-      basePath: $(Build.StagingDirectory)\_\nuget-x64
+      basePath: $(Build.StagingDirectory)\_\nuget
       packagesToPack: $(Build.StagingDirectory)\_\nuget\Microsoft.ROS.MRTK.Foxy.x64.nuspec
-      packDestination: '$(Build.ArtifactStagingDirectory)/nuget-x64'
+      packDestination: '$(Build.ArtifactStagingDirectory)/nuget'
   - task: PublishBuildArtifacts@1
     displayName: 'NuGet publish arm64'
     inputs:
@@ -80,19 +80,12 @@ jobs:
   - task: PublishBuildArtifacts@1
     displayName: 'NuGet publish x64'
     inputs:
-      pathtoPublish: $(Build.ArtifactStagingDirectory)/nuget-x64
+      pathtoPublish: $(Build.ArtifactStagingDirectory)/nuget
       artifactName: 'ros2dotnet-nuget'
   - task: NuGetCommand@2
-    displayName: 'NuGet push x64'
+    displayName: 'NuGet push all'
     inputs:
       command: push
-      packagesToPush: '$(Build.ArtifactStagingDirectory)/nuget-x64/*.nupkg'
-      publishVstsFeed: $(ROSWinPublicFeedId)
-      allowPackageConflicts: true
-  - task: NuGetCommand@2
-    displayName: 'NuGet push arm64'
-    inputs:
-      command: push
-      packagesToPush: '$(Build.ArtifactStagingDirectory)/nuget-arm64/*.nupkg'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/nuget/*.nupkg'
       publishVstsFeed: $(ROSWinPublicFeedId)
       allowPackageConflicts: true
