@@ -62,16 +62,16 @@ jobs:
     displayName: 'NuGet pack ARM64'
     inputs:
       command: pack
-      basePath: $(Build.StagingDirectory)\_\nuget
+      basePath: $(Build.StagingDirectory)\_\nuget-arm64
       packagesToPack: $(Build.StagingDirectory)\_\nuget\Microsoft.ROS.MRTK.Foxy.arm64.nuspec
-      packDestination: '$(Build.ArtifactStagingDirectory)/nuget'
+      packDestination: '$(Build.ArtifactStagingDirectory)/nuget-arm64'
   - task: NuGetCommand@2
     displayName: 'NuGet pack x64'
     inputs:
       command: pack
-      basePath: $(Build.StagingDirectory)\_\nuget-arm64
+      basePath: $(Build.StagingDirectory)\_\nuget-x64
       packagesToPack: $(Build.StagingDirectory)\_\nuget\Microsoft.ROS.MRTK.Foxy.x64.nuspec
-      packDestination: '$(Build.ArtifactStagingDirectory)/nuget-arm64'
+      packDestination: '$(Build.ArtifactStagingDirectory)/nuget-x64'
   - task: PublishBuildArtifacts@1
     displayName: 'NuGet publish arm64'
     inputs:
