@@ -37,22 +37,34 @@ jobs:
       pushd src
       : BUGBUG need to build twice due to the dotnet generator
       build.cmd /unity
-      build.cmd /x64
-      build.cmd /arm64
       popd
-    displayName: Build ROS2 Components Attempt 1
+    displayName: Build ROS2 Components x64 (Pass 0)
     continueOnError: true
     workingDirectory: '$(Build.StagingDirectory)\_'
   - script: |
       pushd src
       : BUGBUG need to build twice due to the dotnet generator
-      build.cmd /unity
       build.cmd /x64
-      build.cmd /arm64
       popd
-    displayName: Build ROS2 Components Attempt 2
+    displayName: Build ROS2 Components x64 (Pass 1)
     continueOnError: false
     workingDirectory: '$(Build.StagingDirectory)\_'
+  - script: |
+      pushd src
+      : BUGBUG need to build twice due to the dotnet generator
+      build.cmd /arm64
+      popd
+    displayName: Build ROS2 Components arm64 (Pass 0)
+    continueOnError: true
+    workingDirectory: '$(Build.StagingDirectory)\_'
+  - script: |
+      pushd src
+      : BUGBUG need to build twice due to the dotnet generator
+      build.cmd /arm64
+      popd
+    displayName: Build ROS2 Components arm64 (Pass 1)
+    continueOnError: false
+    workingDirectory: '$(Build.StagingDirectory)\_'  
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: $(Build.StagingDirectory)\_\target\log
