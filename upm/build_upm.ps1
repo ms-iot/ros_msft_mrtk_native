@@ -106,56 +106,32 @@ function populateArchAndPlat
     }
 }
 
+function generate_link
+{
+    $currentDir = Get-Location
+    $linkXml = Join-Path -Path $currentDir -ChildPath "com.microsoft.ros_mrtk_native\link.xml"
+
+    Get-ChildItem -Path $linkXml | Remove-Item
+    Add-Content $linkXml "<linker>"
+    $filespec = Join-Path -Path $currentDir -ChildPath "com.microsoft.ros_mrtk_native\Plugins\Windows-x64\*_assemblies.dll"
+    $files = Get-Item $filespec -Filter $extSpec
+    foreach ($file in $files)
+    {
+        $filename = [System.IO.Path]::GetFileNameWithoutExtension($file)
+
+        Add-Content $linkXml "  <assembly fullname=""$filename"" preserve=""all""/>"
+    }
+    Add-Content $linkXml "</linker>"
+}
+
 function populate
 {
     populateArchAndPlat -arch "x64" -platform "Windows" -sourceArch "Unity" -templateName 'x86_64_meta.txt'
     #populateArchAndPlat -arch "x64" -platform "uwp" -sourceArch "x64" -templateName 'wsa_x64_meta.txt'
     #populateArchAndPlat -arch "x86" -platform "uwp" -sourceArch "x86" -templateName 'wsa_x86_meta.txt'
     populateArchAndPlat -arch "arm64" -platform "uwp"  -sourceArch "arm64"  -templateName 'wsa_arm64_meta.txt'
-}
 
-function GenerateUnityMeta 
-{
-
-    param 
-    (
-        $templateName,
-        $folder
-    )
-
-    $template = Get-Content $templateName -Raw
-
-    $files = Get-ChildItem -Filter "*.dll" -Recurse $folder
-    
-    foreach ($file in $files)
-    {
-        $ext = [IO.Path]::GetExtension($file)
-        if ($ext -notmatch ".meta")
-        {
-            $guidRaw = New-Guid
-            $guid = $guidRaw.ToString().Replace("-", "")
-            $newMetafilename = $file.FullName + ".meta"
-    
-            Write-Host "Generating $newMetafilename"
-    
-            $newMetafile = $template.Replace("@@newGuid@@", $guid)
-            Set-Content $newMetafilename $newMetafile
-        }
-    }
 }
 
 populate
-
-<#
-GenerateUnityMeta -templateName 'wsa_arm64_meta.txt' -folder "..\target\arm64"
-GenerateUnityMeta -templateName 'wsa_x64_meta.txt' -folder "..\target\x64"
-GenerateUnityMeta -templateName 'x86_64_meta.txt' -folder "..\target\x86"
-
-GenerateUnityMeta -templateName 'wsa_arm64_meta.txt' -folder "C:\opt\vcpkg\installed\arm64-uwp\bin"
-GenerateUnityMeta -templateName 'wsa_x64_meta.txt' -folder "C:\opt\vcpkg\installed\x64-uwp\bin"
-GenerateUnityMeta -templateName 'x86_64_meta.txt' -folder "C:\opt\vcpkg\installed\x86-windows\bin"
-
-GenerateUnityMeta -templateName 'wsa_arm64_meta.txt' -folder "C:\opt\vcpkg\buildtrees\apriltag\arm64-uwp-rel\Release"
-GenerateUnityMeta -templateName 'wsa_x64_meta.txt' -folder "C:\opt\vcpkg\buildtrees\apriltag\x64-uwp-rel\Release"
-GenerateUnityMeta -templateName 'x86_64_meta.txt' -folder "C:\opt\vcpkg\buildtrees\apriltag\x86-windows-rel\Release"
-#>
+generate_link

@@ -14,6 +14,7 @@
 **/tools/
 **/src/build/
 **/upm/com.microsoft.ros_mrtk_native/Plugins/
+**/upm/com.microsoft.ros_mrtk_native/link.xml
 **/nuget/nuget.exe
 
 # User-specific files (MonoDevelop/Xamarin Studio)
