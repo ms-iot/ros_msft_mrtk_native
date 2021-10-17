@@ -29,14 +29,14 @@ jobs:
     displayName: Initialize vcpkg
   - script: |
       call inittree.cmd
-      call inittools.cmd /unity
+      call inittools.cmd /x64
     displayName: Init Tree
     continueOnError: true
     workingDirectory: '$(Build.StagingDirectory)\_'
   - script: |
       pushd src
       : BUGBUG need to build twice due to the dotnet generator
-      build.cmd /unity
+      build.cmd /x64
       popd
     displayName: Build ROS2 Components x64 (Pass 0)
     continueOnError: true
@@ -46,37 +46,14 @@ jobs:
       : BUGBUG need to build twice due to the dotnet generator
       build.cmd /x64
       popd
-    displayName: Build ROS2 Components x64 (Pass 1)
+    displayName: Build ROS2 Components Unity (Pass 1)
     continueOnError: false
     workingDirectory: '$(Build.StagingDirectory)\_'
-  - script: |
-      pushd src
-      : BUGBUG need to build twice due to the dotnet generator
-      build.cmd /arm64
-      popd
-    displayName: Build ROS2 Components arm64 (Pass 0)
-    continueOnError: true
-    workingDirectory: '$(Build.StagingDirectory)\_'
-  - script: |
-      pushd src
-      : BUGBUG need to build twice due to the dotnet generator
-      build.cmd /arm64
-      popd
-    displayName: Build ROS2 Components arm64 (Pass 1)
-    continueOnError: false
-    workingDirectory: '$(Build.StagingDirectory)\_'  
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: $(Build.StagingDirectory)\_\target\log
       artifactName: 'ros2dotnet-log'
     condition: always()
-  - task: NuGetCommand@2
-    displayName: 'NuGet pack ARM64'
-    inputs:
-      command: pack
-      basePath: $(Build.StagingDirectory)\_\nuget
-      packagesToPack: $(Build.StagingDirectory)\_\nuget\Microsoft.ROS.MRTK.Foxy.arm64.nuspec
-      packDestination: '$(Build.ArtifactStagingDirectory)/nuget'
   - task: NuGetCommand@2
     displayName: 'NuGet pack x64'
     inputs:
@@ -85,15 +62,10 @@ jobs:
       packagesToPack: $(Build.StagingDirectory)\_\nuget\Microsoft.ROS.MRTK.Foxy.x64.nuspec
       packDestination: '$(Build.ArtifactStagingDirectory)/nuget'
   - task: PublishBuildArtifacts@1
-    displayName: 'NuGet publish arm64'
-    inputs:
-      pathtoPublish: $(Build.ArtifactStagingDirectory)/nuget
-      artifactName: 'ros2dotnet-nuget'
-  - task: PublishBuildArtifacts@1
     displayName: 'NuGet publish x64'
     inputs:
       pathtoPublish: $(Build.ArtifactStagingDirectory)/nuget
-      artifactName: 'ros2dotnet-nuget'
+      artifactName: 'ros2dotnet-nuget-x64'
   - task: NuGetCommand@2
     displayName: 'NuGet push all'
     inputs:
