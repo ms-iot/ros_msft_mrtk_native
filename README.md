@@ -4,14 +4,15 @@
 This repository builds the native components as a nuget package or Unity Package Manager package required to support ROS2 on UWP devices and Hololens. The related project [ros_msft_mrtk](https://aka.ms/ros/mrtk), contains a Unity Project, ROS2.net utilities, and Mixed Reality Toolkit assets for Robotics. These projects can be used independently.
 
 ## Using the ROS2 Nuget in your UWP application
-> NOTE: nuget packages coming soon
-This project builds and publishes a nuget package named Microsoft.ROS.MRTK.<distro> to the nuget compatible Azure Artifact feed for ROS.
+This project builds a nuget package named Microsoft.ROS.MRTK.<distro> available from the github release on this repository. 
 
 To consume the nuget package from a UWP application:
 
-1. In Visual Studio, Add a nuget feed for `https://aka.ms/ros/public`.
-1. locate Microsoft.ROS.MRTK.Foxy, and install it.
-1. Now you can initialize it and perform pub/sub or use Action Servers.
+1. Download the native nuget package from the github release.
+1. Move the downloaded nuget package to a folder on your computer.
+1. In Visual Studio, Create a `local` Nuget Feed by selecting `Tools` -> `Nuget Package Manager` -> `Package Manager Settings`, then selecting `Package Sources`.
+1. Locate Microsoft.ROS.MRTK.Foxy, and install it from the Nubet Package Manager.
+1. Now you can initialize it and perform pub/sub or use Action Client.
 
 A Native sample project for consuming the nuget package is available in the `examples` directory, allowing a UWP native application to consume ROS2 libraries directly.
 
