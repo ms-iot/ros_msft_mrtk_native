@@ -13,147 +13,80 @@ echo "VSInstallDir is %VSINSTALLDIR%"
 
 set clean=false
 set DEBUG_CMD=
-: Call to build the isolated ROS2 build system
-set ChocolateyInstall=c:\opt\chocolatey
-
-set CMAKE_PREFIX_PATH_ORIG=%CMAKE_PREFIX_PATH%
-set PATH=c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;C:\opt\python37amd64\DLLs;%PATH%
-set PATH_ORIG=%PATH%
-
-set VCPKG_ROOT=c:\opt\vcpkg
-set PYTHONHOME=C:\opt\python37amd64\
-
 
 :: Parse options
 :GETOPTS
  if /I "%~1" == "/?" goto USAGE
  if /I "%~1" == "/Help" goto USAGE
- if /I "%~1" == "/x86" set BUILD=x86
- if /I "%~1" == "/x64" set BUILD=x64
- if /I "%~1" == "/arm64" set BUILD=arm64
- if /I "%~1" == "/arm" set BUILD=arm
- if /I "%~1" == "/unity" set BUILD=unity
- if /I "%~1" == "/clean" set clean=true
- shift
+ if /I "%~1" == "/x86" (
+     set BUILD_ARCH=x86
+     set BUILD_BASE=x86
+     set BUILD_SYSTEM=WindowsStore
+ )
+
+ if /I "%~1" == "/x64" (
+     set BUILD_ARCH=x64
+     set BUILD_BASE=x64
+     set BUILD_SYSTEM=WindowsStore
+ )
+ 
+ if /I "%~1" == "/arm64" (
+     set BUILD_ARCH=arm64
+     set BUILD_BASE=arm64
+     set BUILD_SYSTEM=WindowsStore
+ )
+ 
+ if /I "%~1" == "/arm" (
+     set BUILD_ARCH=arm
+     set BUILD_BASE=arm
+     set BUILD_SYSTEM=WindowsStore
+ )
+
+ if /I "%~1" == "/unity" (
+     set BUILD_ARCH=x64
+     set BUILD_BASE=unity
+     set BUILD_SYSTEM=Windows
+ )
+if /I "%~1" == "/clean" set clean=true
+shift
+
 if not (%1)==() goto GETOPTS
 
-if "%BUILD%"=="x86" goto :build_x86
-if "%BUILD%"=="x64" goto :build_x64
-if "%BUILD%"=="unity" goto :build_unity
-if "%BUILD%"=="arm" goto :build_arm
-if "%BUILD%"=="arm64" goto :build_arm64
+: Call to build the isolated ROS2 build system
+set ChocolateyInstall=c:\opt\chocolatey
 
-:build_unity
-setlocal
-set ROS2_ARCH=x64
-call tools\unity\local_setup.bat
+set PATH_ORIG=%PATH%
 
-pushd target
-set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/x64-windows;%CMAKE_PREFIX_PATH_ORIG%
-set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x64-windows\bin;%PATH_ORIG%
-call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
+set CMAKE_PREFIX_PATH_ORIG=%CMAKE_PREFIX_PATH%
+set PATH=c:\opt\ros\foxy\x64\tools\vcpkg;c:\opt\chocolatey\bin;C:\opt\ros\foxy\x64;C:\opt\ros\foxy\x64\Scripts;%PATH%
+set VCPKG_ROOT=c:\opt\ros\foxy\x64\tools\vcpkg
+set PYTHONHOME=C:\opt\ros\foxy\x64
+
+set ARCH_LIST=x64 x86 arm arm64 unity
 
 if "%clean%"=="true" (
-    if exist unity_build rd /s /q unity_build
-    if exist unity rd /s /q unity
+    pushd tools
+    for %%a in (%ARCH_LIST%) do ( 
+        if exist %%a_build rd /s /q %%a_build
+        if exist %%a rd /s /q %%a
+    )
+    popd
+
+    if "%BUILD_ARCH%" == "" ( 
+        goto :eof
+    )
 )
 
-: Disable Shared Memory when running under unity
-: TODO: figure out why shared memory isn't happy
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\unity_build --install-base .\unity --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DSHM_TRANSPORT_DEFAULT=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
-if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-if "%BUILD%"=="unity" goto :build_succeeded
-
-:build_x64
 setlocal
-set ROS2_ARCH=x64
-call tools\x64\local_setup.bat
-
-pushd target
-set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/x64-uwp;%CMAKE_PREFIX_PATH_ORIG%
-set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x64-uwp\bin;%PATH_ORIG%
-call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvars64.bat"
-
-if "%clean%"=="true" (
-    if exist x64_build rd /s /q x64_build
-    if exist x64 rd /s /q x64
-)
-
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x64_build --install-base .\x64 --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=x64 -DDOTNET_CORE_ARCH=x64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
+call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\%BUILD_BASE%_build --install-base .\%BUILD_BASE% --cmake-args -A %BUILD_ARCH%  -DCSHARP_PLATFORM=%BUILD_ARCH% -DCMAKE_SYSTEM_NAME=%BUILD_SYSTEM% -DDOTNET_CORE_ARCH=%BUILD_ARCH% -DCMAKE_SYSTEM_VERSION=10.0 --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev 
+endlocal
 if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-if "%BUILD%"=="x64" goto :build_succeeded
-
-:build_arm64
-setlocal
-set ROS2_ARCH=arm64
-call tools\arm64\local_setup.bat
-
-pushd target
-set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/arm64-uwp;%CMAKE_PREFIX_PATH_ORIG%
-set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\arm64-uwp\bin;%PATH_ORIG%
-call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvarsamd64_arm64.bat"
-
-if "%clean%"=="true" (
-    if exist arm64_build rd /s /q arm64_build
-    if exist install rd /s /q install
-)
-
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm64_build --install-base .\arm64 --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm64 -DDOTNET_CORE_ARCH=arm64 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev
-if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-if "%BUILD%"=="arm64" goto :build_succeeded
-
-
-
-:build_arm
-setlocal
-set ROS2_ARCH=arm
-call tools\arm\local_setup.bat
-
-pushd target
-set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/arm-uwp;%CMAKE_PREFIX_PATH_ORIG%
-set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\arm-uwp\bin;%PATH_ORIG%
-call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvarsamd64_arm.bat"
-
-if "%clean%"=="true" (
-    if exist arm64_build rd /s /q arm64_build
-    if exist install rd /s /q install
-)
-
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\arm_build --install-base .\arm --packages-ignore tf2_bullet tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH%  -DCSHARP_PLATFORM=arm -DDOTNET_CORE_ARCH=arm -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev
-if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-if "%BUILD%"=="arm" goto :build_succeeded
-
-: build x86
-:build_x86
-setlocal
-: x86 is called Win32 in cmakelandia
-set ROS2_ARCH=Win32
-call tools\x86\local_setup.bat
-
-pushd target
-set CMAKE_PREFIX_PATH=C:/opt/vcpkg/installed/x86-uwp;%CMAKE_PREFIX_PATH_ORIG%
-set PATH=c:\opt\vcpkg;c:\opt\vcpkg\installed\x86-uwp\bin;%PATH_ORIG%
-call "%VSINSTALLDIR%\VC\Auxiliary\Build\vcvarsamd64_x86.bat"
-
-if "%clean%"=="true" (
-    if exist x86_build rd /s /q x86_build
-    if exist x86 rd /s /q x86
-)
-
-call colcon build --event-handlers console_cohesion+ --merge-install --build-base .\x86_build --install-base .\x86 --packages-ignore tf2_py examples_tf2_py rmw_fastrtps_dynamic_cpp rcl_logging_log4cxx rcl_logging_spdlog ros2trace tracetools_launch tracetools_read tracetools_test tracetools_trace rcldotnet_examples --cmake-args -A %ROS2_ARCH% -DCSHARP_PLATFORM=x86 -DDOTNET_CORE_ARCH=x86 -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -DTHIRDPARTY=ON -DINSTALL_EXAMPLES=OFF -DBUILD_TESTING=OFF -DRCL_LOGGING_IMPLEMENTATION=rcl_logging_noop --no-warn-unused-cli -DCMAKE_BUILD_TYPE=RelWithDebInfo -Wno-dev
-if "%ERRORLEVEL%" NEQ "0" goto :build_fail 
-if "%BUILD%"=="x86" goto :build_succeeded
-
-goto :build_succeeded
+goto :eof
 
 :build_fail
-popd
 goto :eof
 
 :USAGE 
-    echo "build [/x64|/x86|/arm64|/arm] [/clean]"
+    echo "build [/x86 | /arm64 | /unity | /arm] [/clean]"
     goto :eof
 
-:build_succeeded
-endlocal
-popd

@@ -18,16 +18,18 @@ set VisualStudioVersion=16.0
 
 : Call to initialize the isolated ROS2 build system
 mkdir c:\opt\chocolatey
-set PYTHONHOME=C:\opt\python37amd64\
+set PYTHONHOME=C:\opt\ros\foxy\x64
 set ChocolateyInstall=c:\opt\chocolatey
-set PATH=c:\opt\chocolatey\bin;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;C:\opt\python37amd64\DLLs;%PATH%
+set PATH=c:\opt\ros\foxy\x64\tools\vcpkg;c:\opt\chocolatey\bin;C:\opt\ros\foxy\x64;C:\opt\ros\foxy\x64\Scripts;%PATH%
+set VCPKG_ROOT=c:\opt\ros\foxy\x64\tools\vcpkg
+
 choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
 choco upgrade ros-colcon-tools -y --execution-timeout=0 --pre
 
 : choco upgrade ros_vcpkg -y --execution-timeout=0 --pre
 : include staged vcpkgs
 
-set VCPKG_ROOT=c:\opt\vcpkg
+set VCPKG_ROOT=c:\opt\ros\foxy\x64\tools\vcpkg
 
 call pip install vcstool
 call pip install lark-parser
@@ -53,7 +55,7 @@ popd
 goto :eof
 
 :novcpkg
-echo "VCPkg not found at c:\opt\vcpkg\vcpkg.exe"
+echo "VCPkg not found at c:\opt\ros\foxy\x64\tools\vcpkg\vcpkg.exe"
 dir c:\opt
 
 exit /1
