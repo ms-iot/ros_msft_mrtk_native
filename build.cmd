@@ -18,12 +18,7 @@ set DEBUG_CMD=
 :GETOPTS
  if /I "%~1" == "/?" goto USAGE
  if /I "%~1" == "/Help" goto USAGE
- if /I "%~1" == "/x86" (
-     set BUILD_ARCH=x86
-     set BUILD_BASE=x86
-     set BUILD_SYSTEM=WindowsStore
- )
-
+ 
  if /I "%~1" == "/x64" (
      set BUILD_ARCH=x64
      set BUILD_BASE=x64
@@ -36,12 +31,6 @@ set DEBUG_CMD=
      set BUILD_SYSTEM=WindowsStore
  )
  
- if /I "%~1" == "/arm" (
-     set BUILD_ARCH=arm
-     set BUILD_BASE=arm
-     set BUILD_SYSTEM=WindowsStore
- )
-
  if /I "%~1" == "/unity" (
      set BUILD_ARCH=x64
      set BUILD_BASE=unity
@@ -58,11 +47,12 @@ set ChocolateyInstall=c:\opt\chocolatey
 set PATH_ORIG=%PATH%
 
 set CMAKE_PREFIX_PATH_ORIG=%CMAKE_PREFIX_PATH%
-set PATH=c:\opt\ros\foxy\x64\tools\vcpkg;c:\opt\chocolatey\bin;C:\opt\ros\foxy\x64;C:\opt\ros\foxy\x64\Scripts;%PATH%
-set VCPKG_ROOT=c:\opt\ros\foxy\x64\tools\vcpkg
-set PYTHONHOME=C:\opt\ros\foxy\x64
+set PYTHONHOME=C:\opt\mrtk_python
+set ChocolateyInstall=c:\opt\mrtk_chocolatey
+set PATH=c:\opt\mrtk_vcpkg;c:\opt\chocolatey\bin;C:\opt\mrtk_python;C:\opt\mrtk_python\Scripts;%PATH%
+set VCPKG_ROOT=c:\opt\mrtk_vcpkg
 
-set ARCH_LIST=x64 x86 arm arm64 unity
+set ARCH_LIST=x64 arm64 unity
 
 if "%clean%"=="true" (
     pushd tools
@@ -87,6 +77,6 @@ goto :eof
 goto :eof
 
 :USAGE 
-    echo "build [/x86 | /arm64 | /unity | /arm] [/clean]"
+    echo "build [/arm64 | /unity / x64] [/clean]"
     goto :eof
 

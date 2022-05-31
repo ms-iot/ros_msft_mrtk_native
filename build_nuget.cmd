@@ -23,8 +23,6 @@ pushd nuget
  if /I "%~1" == "/Help" goto USAGE
  if /I "%~1" == "/clean" set CLEAN=1
  if /I "%~1" == "/nopack" set NOPACK=1
- if /I "%~1" == "/arm" set NUSPEC="Microsoft.ROS.MRTK.Foxy.arm"
- if /I "%~1" == "/x86" set NUSPEC="Microsoft.ROS.MRTK.Foxy.x86"
  if /I "%~1" == "/x64" set NUSPEC="Microsoft.ROS.MRTK.Foxy.x64"
  if /I "%~1" == "/arm64" set NUSPEC="Microsoft.ROS.MRTK.Foxy.arm64"
  if /I "%~1" == "/unity" set NUSPEC="Microsoft.ROS.MRTK.Foxy.unity"
