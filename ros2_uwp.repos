@@ -1,68 +1,68 @@
 repositories:
-  eProsima/Fast-CDR:
-    type: git
-    url: https://github.com/eProsima/Fast-CDR.git
-    version: v1.0.17
-  eProsima/Fast-DDS:
-    type: git
-    url: https://github.com/ms-iot/Fast-DDS.git
-    version: foxy-uwp
-  eProsima/foonathan_memory_vendor:
-    type: git
-    url: https://github.com/ms-iot/foonathan_memory_vendor.git
-    version: v1.0.0
-  micro-ROS/ros_tracing/ros2_tracing:
-    type: git
-    url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing.git
-    version: foxy
-  ros2/ament_cmake_ros:
-    type: git
-    url: https://github.com/ros2/ament_cmake_ros.git
-    version: foxy
-  ros2/rcpputils:
-    type: git
-    url: https://github.com/ms-iot/rcpputils.git
-    version: foxy
-  ros2/rcutils:
-    type: git
-    url: https://github.com/ms-iot/rcutils.git
-    version: foxy
-  ros2/common_interfaces:
-    type: git
-    url: https://github.com/ros2/common_interfaces.git
-    version: foxy
-  ros2/example_interfaces:
-    type: git
-    url: https://github.com/ros2/example_interfaces.git
-    version: foxy
-  ros2/libyaml_vendor:
-    type: git
-    url: https://github.com/ms-iot/libyaml_vendor.git
-    version: foxy
-  ros2/rcl:
-    type: git
-    url: https://github.com/ms-iot/rcl.git
-    version: foxy
-  ros2/rcl_interfaces:
-    type: git
-    url: https://github.com/ros2/rcl_interfaces.git
-    version: foxy
-  ros2/rcl_logging:
-    type: git
-    url: https://github.com/ros2/rcl_logging.git
-    version: foxy
-  ros2/rmw:
-    type: git
-    url: https://github.com/ros2/rmw.git
-    version: foxy
-  ros2/rmw_fastrtps:
-    type: git
-    url: https://github.com/ros2/rmw_fastrtps.git
-    version: foxy
-  ros2/rmw_implementation:
-    type: git
-    url: https://github.com/ooeygui/rmw_implementation.git
-    version: foxy
+ eProsima/Fast-CDR:
+ type: git
+ url: https://github.com/eProsima/Fast-CDR.git
+ version: v1.0.17
+ eProsima/Fast-DDS:
+ type: git
+ url: https://github.com/ms-iot/Fast-DDS.git
+ version: foxy-uwp
+ eProsima/foonathan_memory_vendor:
+ type: git
+ url: https://github.com/ms-iot/foonathan_memory_vendor.git
+ version: v1.0.0
+ micro-ROS/ros_tracing/ros2_tracing:
+ type: git
+ url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing.git
+ version: foxy
+ ros2/ament_cmake_ros:
+ type: git
+ url: https://github.com/ros2/ament_cmake_ros.git
+ version: foxy
+ ros2/rcpputils:
+ type: git
+ url: https://github.com/ms-iot/rcpputils.git
+ version: foxy
+ ros2/rcutils:
+ type: git
+ url: https://github.com/ms-iot/rcutils.git
+ version: foxy
+ ros2/common_interfaces:
+ type: git
+ url: https://github.com/ros2/common_interfaces.git
+ version: foxy
+ ros2/example_interfaces:
+ type: git
+ url: https://github.com/ros2/example_interfaces.git
+ version: foxy
+ ros2/libyaml_vendor:
+ type: git
+ url: https://github.com/ms-iot/libyaml_vendor.git
+ version: foxy
+ ros2/rcl:
+ type: git
+ url: https://github.com/ms-iot/rcl.git
+ version: foxy
+ ros2/rcl_interfaces:
+ type: git
+ url: https://github.com/ros2/rcl_interfaces.git
+ version: foxy
+ ros2/rcl_logging:
+ type: git
+ url: https://github.com/ros2/rcl_logging.git
+ version: foxy
+ ros2/rmw:
+ type: git
+ url: https://github.com/ros2/rmw.git
+ version: foxy
+ ros2/rmw_fastrtps:
+ type: git
+ url: https://github.com/ros2/rmw_fastrtps.git
+ version: foxy
+ ros2/rmw_implementation:
+ type: git
+ url: https://github.com/ooeygui/rmw_implementation.git
+ version: foxy
   ros2/rosidl:
     type: git
     url: https://github.com/ros2/rosidl.git
@@ -149,7 +149,7 @@ repositories:
     version: foxy
   ros2_dotnet/ros2_dotnet:
     type: git
-    url: https://github.com/ms-iot/ros2_dotnet
+    url: https://github.com/ms-iot/ros2_dotnet.git
     version: master
   ros2_dotnet/dotnet_cmake_module:
     type: git
